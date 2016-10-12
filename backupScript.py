@@ -11,7 +11,7 @@ userBDD = "root"
 userPassBDD = "root"
 # nameBDD = "backups/namesBDD.txt                                              # Pour backup multiples
 nameBDD = "backupTest"
-cheminBackup = "./backups/"
+cheminBackup = "../backups/"
 
 # Utilisation de datetime pour créer le fichier de sauvegarde
 dateBackup = time.strftime('%d%m%Y-%H%M%S')
