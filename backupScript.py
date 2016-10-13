@@ -1,58 +1,72 @@
 # coding=utf-8
 # Script pour créer un backup d'une base de donnée sur mysql
 
-# Importation des librairies nécesaires au script
-import os
-import time
+# Importation des librairies nécessaires au script
+from tkinter.filedialog import *
+from pathlib import Path
+import time, os
 
-# Initialisaton des informations pour accéder à la BDD
-hoteBDD = "localhost"
-userBDD = "root"
-userPassBDD = "root"
-# nameBDD = "backups/namesBDD.txt                                              # Pour backup multiples
-nameBDD = "backupTest"
-cheminBackup = "../backups/"
 
-# Utilisation de datetime pour créer le fichier de sauvegarde
-dateBackup = time.strftime('%d%m%Y-%H%M%S')
-
-backup = cheminBackup + dateBackup
-
-# Vérification de l'existence du dossier de sauvegarde, si non, on le créé
-print ("Création du dossier pour le backup")
-if os.path.exists(backup):
-    os.makedirs(backup)
-
-# Condition si plusieurs backups ou non
-if os.path.exists(nameBDD):
-    file1 = open(nameBDD)
-    multi = 1
-    print ("Fichier de la base de donnée localisée")
-    print ("Démarrage du backup de la base de donnée " + nameBDD)
-else:
-    print ("Fichier de la pas de donnée non localisée")
-    print ("Démarrage du backup de la base de donnée " + nameBDD)
-    multi = 0
-
-# Procédure pour le backup
-if multi == 1:
-    fichier = open(nameBDD, "r")
-    longueur = len(fichier.readlines())
-    fichier.close()
-    compteur = 1
-    dbfile = open(nameBDD,"r")
-
-    while compteur <= longueur:
-        bdd = dbfile.readline()         # Lecture de la base de donnée depuis le fichier
-        bdd = bdd[:-1]                  # Supprime les lignes supplémentaires
-        dumpcmd = "mysqldump -u " + userBDD + " -p" + userPassBDD + " " + bdd + " > " + backup + "/" + bdd + ".sql"
-        os.system(dumpcmd)
-        compteur = compteur + 1
+# Fonctions
+def multiBackup(userBDD, userPassBDD, pathBackup, nameBDD):
+    dbFile = open(nameBDD, "r")
+    length = len(dbFile.readlines())
+    counter = 1
+    dbfile = open(nameBDD, "r")
+    while counter <= length:
+        bdd = dbfile.readline()
+        bdd = bdd[:-1]
+        backup = pathBackup + "/" + bdd
+        if not os.path.exists(backup):
+            os.makedirs(backup)
+        backup += "/" + time.strftime('%d%m%Y-%H%M%S') + ".sql"
+        dumpcmd = "mysqldump -u " + userBDD + " -p" + userPassBDD + " " + bdd + " > " + backup
+        output = os.system(dumpcmd)
+        counter += 1
+        if output == 0:
+            print("Le backup de la base de donnée '" + bdd + "'a été créé dans le dans le dossier " + backup)
+            time.sleep(1)
+        else:
+            print("La base de donnée n'existe pas ...")
+            print("Suppression du fichier et du dossier concerant une BDD non existante.")
+            deleteWrongDB(backup)
     dbfile.close()
-else:
-    bdd = nameBDD
-    dumpcmd = "mysqldump -u " + userBDD + " -p" + userPassBDD + " " + bdd + " > " + backup + "/" + bdd + ".sql"
-    os.system(dumpcmd)
 
-print ("Backup terminé")
-print ("Le backup a été créé dans le " + backup + " fichier")
+def oneBackup(userBDD, userPassBDD, pathBackup, nameBDD):
+    backup = pathBackup + "/" + nameBDD
+    print("Création du dossier pour le backup")
+    if not os.path.exists(backup):
+        os.makedirs(backup)
+    bdd = nameBDD
+    dumpcmd = "mysqldump -u " + userBDD + " -p" + userPassBDD + " " + bdd + " > " + backup + "/" + time.strftime(
+        '%d%m%Y-%H%M%S') + ".sql"
+    print("dumpcmd -> " + dumpcmd)
+    os.system(dumpcmd)
+    print("Le backup de la base de donnée '" + bdd + "'a été créé dans le dans le dossier " + backup)
+
+def deleteWrongDB(backup):
+    file_path = Path(backup)
+    file_path.unlink()
+    for parent, _ in zip(file_path.parents, range(1)):
+        # On remonte de 1 dossier dans l'arborescence du fichier supprimer
+        # Si le dossier est vide on le supprime sinon on retourne une erreur
+        try:
+            parent.rmdir()
+        except OSError:
+            break
+
+
+# Main
+hoteBDD = "localhost"
+userBDD = input("Veuillez saisir votre nom d'utilisateur: ")
+userPassBDD = input("Veuillez saisir votre mot de passe: ")
+multi = input("Si vous souhaitez procéder à un seul backup taper '0' sinon tapez '1': ")
+multi = int(multi)
+if multi == 0:
+    nameBDD = input("Veuillez entrer le nom de la base donnée que vous souahitez sauvegarder: ")
+    pathBackup = askdirectory(initialdir='.')
+    oneBackup(userBDD, userPassBDD, pathBackup, nameBDD)
+else:
+    nameBDD = askopenfilename()
+    pathBackup = askdirectory(initialdir='.')
+    multiBackup(userBDD, userPassBDD, pathBackup, nameBDD)
