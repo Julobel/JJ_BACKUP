@@ -55,6 +55,26 @@ def deleteWrongDB(backup):
         except OSError:
             break
 
+def writeListDb():
+    name = 'dbListAuto.txt'
+    dbFile = open(name, "a")
+    restart = True
+    counter = 1
+    while restart:
+        if counter == 1:
+            dbFile.write(input("Entrez une bdd à backup: "))
+        else:
+            dbFile.write("\n" + input("Entrez une bdd à backup: "))
+        counter += 1
+        res = input("Voulez ajouter une bdd ? (oui/non): ")
+        if res == "oui":
+            restart = True
+        else:
+            dbFile.close()
+            restart = False
+    print("Le fichier " + name + "bien été créé")
+    return name
+
 
 # Main
 hoteBDD = "localhost"
@@ -67,6 +87,6 @@ if multi == 0:
     pathBackup = askdirectory(initialdir='.')
     oneBackup(userBDD, userPassBDD, pathBackup, nameBDD)
 else:
-    nameBDD = askopenfilename()
+    nameBDD = writeListDb()
     pathBackup = askdirectory(initialdir='.')
     multiBackup(userBDD, userPassBDD, pathBackup, nameBDD)
