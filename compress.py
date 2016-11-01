@@ -4,17 +4,26 @@ import zipfile
 import os
 import tarfile
 
-#compresse un fichier dans une archive du même nom dans le même dossier avec le système de compression spécifié
+
+#constantes pour le type de compression
+COMPRESS_ZIP = "zip"
+COMPRESS_GZ = "gz"
+COMPRESS_BZ2 = "bz2"
+    
+#compresse un fichier dans une archive du même nom dans le même dossier avec le système de compression spécifié et supprimme le fichier
 #renvoie vrai si la procédure a fini avec succes
 #        faux si le fichier n'existe pas
 #        une ValueError si le système de compression n'est pas géré
 def compressFile(filePath,archiveType):
-    if (archiveType=="zip"):
-        return _zipFile(filePath)
-    elif (archiveType in ("gz","bz2")):
-        return _tarFile(filePath,archiveType)
+    if (archiveType==COMPRESS_ZIP):
+        if (_zipFile(filePath)):
+            os.remove(filePath)
+    elif (archiveType in (COMPRESS_GZ,COMPRESS_BZ2)):
+        if (_tarFile(filePath,archiveType)):
+            os.remove(filePath)
     else:
         raise ValueError('Invalid compession system')
+    
 
 #crée un fichier zip du même nom que le fichier specifié dans le même dossier
 #renvoie vrai si la procédure a fini avec succes
@@ -34,13 +43,10 @@ def _zipFile(filePath):
 def _tarFile(filePath,archiveType):
     success=False
     if (os.path.exists(filePath)):        
-        tarFile = tarfile.open('t.txt.tar.'+archiveType, 'w:'+archiveType)
+        tarFile = tarfile.open(filePath+'.tar.'+archiveType, 'w:'+archiveType)
         tarFile.add(filePath)        
         tarFile.close()
         success=True
     return success
-
-
-
 
 
