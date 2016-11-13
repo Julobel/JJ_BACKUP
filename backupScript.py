@@ -66,11 +66,11 @@ def delWrongDb(backupFilePath):
             print (OSError)
             break
 
-# Main
-hoteBDD = "localhost"
-userDb = input("Veuillez saisir votre nom d'utilisateur: ")
-userPassDb = input("Veuillez saisir votre mot de passe: ")
-multi = input("Si vous souhaitez procéder à un seul backup taper '0' sinon tapez '1': ")
-multi = int(multi)
-listDb = tabListDb(multi)
-backup(userDb, userPassDb, listDb)
+if __name__=="__main__":
+    hoteBDD = "localhost"
+    userDb = input("Veuillez saisir votre nom d'utilisateur: ")
+    userPassDb = input("Veuillez saisir votre mot de passe: ")
+    multi = input("Si vous souhaitez procéder à un seul backup taper '0' sinon tapez '1': ")
+    multi = int(multi)
+    listDb = tabListDb(multi)
+    backup(userDb, userPassDb, listDb)
