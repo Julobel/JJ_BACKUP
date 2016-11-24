@@ -19,7 +19,7 @@ class BackupOption(object):
     SGBD_SQLLITE = "SQLite"
     
 
-    def __init__(self,sgbd="", host="localHost",user="",pwd="",databases=[],allDatabases=False,compressType="",crypt=False):
+    def __init__(self,sgbd="", host="localhost",user="",pwd="",databases=[],allDatabases=False,compressType="",crypt=False):
         '''
         initialisation des attributs
         '''
@@ -32,11 +32,11 @@ class BackupOption(object):
         self.compressType = compressType
         self.crypt = crypt
      
-    def addDatabe(self, database):
+    def addDatabase(self, database):
         if database not in self.databases:
             self.databases.append(database)
      
-    def removeDatabe(self, database):
+    def removeDatabase(self, database):
         if database in self.databases:
             self.databases.remove(database)
     
