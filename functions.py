@@ -39,7 +39,7 @@ def getInt(message,mini, maxi):
                 break
         #si la saisi n'est pas un entier, affichage erreur et retour au début la boucle infini
         except ValueError:
-            print('Saisissez un entier entre '+mini+' et '+maxi)
+            print('Saisissez un entier entre '+str(mini)+' et '+str(maxi))
     return nombre_saisi
 
 '''
@@ -110,4 +110,6 @@ def call(host='162.243.164.132',user='jules',password='jules',db='backupTest'):
 
 if __name__=="__main__":
     #call()
-    confirm = getValue("confirmer vous",["y","n"])
+    print (getInt("Votre choix : ",1,5))
+    print (getValue("Confimez-vous : ",["y","n"]))
+
