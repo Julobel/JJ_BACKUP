@@ -18,8 +18,7 @@ def display(title,message):
         messagebox.showerror(title, message)
     except TclError as e:
         print("----"+title+"----")
-        print(message)
-        
+        print(message)        
 
 def displayMessage(message):
     display("Information", message)
@@ -27,8 +26,35 @@ def displayMessage(message):
 def displayError(message):
     display("Erreur", message)
 
+'''
+Demande à l'utilisateur un entier entre deux valeurs incluses et la retourne
+la demande est réeffectuée tant que la saisie ne correspond pas aux critères
+'''
+def getInt(message,mini, maxi): 
+    while True:
+        try:
+            nombre_saisi=int(input(message))            
+            #si le nombre saisi est un entier correspondant aux critères on quitte la boucle infini
+            if nombre_saisi>=mini and nombre_saisi<=maxi:
+                break
+        #si la saisi n'est pas un entier, affichage erreur et retour au début la boucle infini
+        except ValueError:
+            print('Saisissez un entier entre '+mini+' et '+maxi)
+    return nombre_saisi
 
+'''
+Demande à l'utilisateur une valeur incluse dans un tableau de donnée et la retourne
+la demande est réeffectuée tant que la saisie ne correspond pas aux critères
+'''
+def getValue(message,data): 
+    while True:
+        valeur_saisie=input(message)            
+        #si le nombre saisi est un entier correspondant aux critères on quitte la boucle infini
+        if valeur_saisie in data:
+            break
+    return valeur_saisie
 
+'''            
 def call(host='162.243.164.132',user='jules',password='jules',db='backupTest'):
     try:
         connection = pymysql.connect(host=host, user=user, password=password,
@@ -80,6 +106,8 @@ def call(host='162.243.164.132',user='jules',password='jules',db='backupTest'):
             messagebox.showerror("Erreur", e3.args)
         except TclError as e:
             print(e3.args)
+'''
 
 if __name__=="__main__":
-    call()
+    #call()
+    confirm = getValue("confirmer vous",["y","n"])
