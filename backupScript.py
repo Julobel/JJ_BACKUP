@@ -5,7 +5,11 @@ from pathlib import Path
 import os, time
 
 # Fonctions
-# creation d'un tableau contenant le nom des BDD, retourne le tableau
+'''
+Création d'un tableau contenant le ou les noms des BDDs
+@Param boolean multi, false si l'utilisateur souhaite fait un backup pour une seule base sinon vaut vrai
+@Return array listDb, contient le ou les noms des bases de données à backup
+'''
 def tabListDb(multi):
     listDb = []
     if multi == 0:
@@ -22,7 +26,12 @@ def tabListDb(multi):
     print("Les BDD que vous souhaitez backup sont -> " + str(listDb))
     return listDb
 
-# creation d'un fichier backup sql d'une base de données
+'''
+Création d'un fichier backup .sql pour la ou les bases de données
+@Param string userDB, nom d'utilisateur de la base de donnée
+@Param string userPassDb, mot de passe utilisateur de la bas e de donnée
+@Param array listDb, contient le ou les noms des bases de données à backup
+'''
 def backup(userDb, userPassDb, listDb):
     counter = 0
     while counter < len(listDb):
@@ -51,7 +60,10 @@ def backup(userDb, userPassDb, listDb):
             print("La base de donnée n'existe pas ...")
             delWrongDb(backupFilePath)
         counter += 1
-
+'''
+Supprime le fichier et le dossier créé si la procédure ne c'est pas passé comme prévu (Ex: erreur dans le nom de la bdd ..)
+@Param string backupFilePath, chemin du fichier à supprimer
+'''
 def delWrongDb(backupFilePath):
     # suppression du fichier
     file_path = Path(backupFilePath)
