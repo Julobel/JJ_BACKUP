@@ -1,29 +1,34 @@
 from abc import ABC, abstractmethod
 
-"""
-Interface qui va définir les méthodes pour les futurs SGBD supportés
-"""
 class IBackup(ABC):
+    """
+    Interface qui va définir les méthodes pour les futurs SGBD supportés
+    """
 
-    """ Exécute la sauvegarde """
     @abstractmethod
     def execute(self):
+        """ Exécute la sauvegarde """
         pass
 
-    """ Se connecte au serveur """
     @abstractmethod
     def serverConnect(self):
+        """ Se connecte au serveur et retourne la connexion"""
         pass
 
-    """ # Se connecte à la base de donnée spécifiée """
     @abstractmethod
-    def DBConnect(self, DbName):
+    def dbConnect(self, dbName):      
+        """ Se connecte à la base de donnée spécifiée et retourne la connexion"""
         pass
 
-    """ Retourne un objet de type backupOption contenant les différents paramètres nécessaire à la sauvegarde """
     @abstractmethod
-    def getOptions(self):
+    def getOptions(self):    
+        """ Retourne un objet de type BackupOption contenant les différents paramètres nécessaire à la sauvegarde """
         pass
 
+    @abstractmethod
+    def getDatabases(self):    
+        """ Retourne la liste des bases de données présentes sur le serveur """
+        pass
+    
 if __name__=="__main__":
     pass
