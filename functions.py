@@ -48,6 +48,11 @@ def initLog():
                         format='%(asctime)s - %(levelname)s : %(message)s', 
                         datefmt='%Y/%m/%d %H:%M:%S')
 
+def stringToBoolean(v):
+    """ convertit une chaine de caractère en booleen """
+    return v.lower() in ("true", "1")
+
+
 '''
 Demande à l'utilisateur un entier entre deux valeurs incluses et la retourne
 la demande est réeffectuée tant que la saisie ne correspond pas aux critères
