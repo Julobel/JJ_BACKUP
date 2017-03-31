@@ -90,6 +90,13 @@ def askChoice(message,choices):
         print(str(i+1)+" : "+choices[i])
     return getInt("Votre Choix ? : ",1,len(choices))-1
 
+def askBoolean(message):
+    value = confirm("\n" + message +" (y/n) : ")
+    if value == 'y':
+        return True
+    else:
+        return False
+
 def confirm(message,tableau=[]):
     """
     Demande à l'utilisateur de saisir des informations et demande une confirmation
@@ -101,7 +108,7 @@ def confirm(message,tableau=[]):
             reponse=getValue(message)
         else:
             reponse = tableau[askChoice(message,tableau)]            
-        confirm = getValue("Confirmez-vous votre choix : "+reponse+" ? y/n : ",["y","n"])
+        confirm = getValue("Confirmez-vous votre choix : "+reponse+" ? (y/n) : ",["y","n"])
         if (confirm=="y"):
             return reponse
         else:
