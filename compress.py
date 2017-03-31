@@ -22,7 +22,7 @@ def compressFile(filePath,archiveType):
     elif (archiveType in (COMPRESS_GZ,COMPRESS_BZ2)):
         if (_tarFile(filePath,archiveType)):
             os.remove(filePath)
-    else:
+    elif archiveType not in getCompressTypeList():
         raise ValueError('Invalid compession system')
     
 
