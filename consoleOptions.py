@@ -5,7 +5,6 @@ from BackupFactory import BackupFactory
 from backupOptions import BackupOption
 from compress import getCompressTypeList
 
-options = BackupOption()
 
 def askSGBD():
     """
@@ -71,11 +70,15 @@ def askCompressType():
     """
     return confirm("\nChoisisez ou non un type de compression: ", getCompressTypeList())
 
-options.sgbd = askSGBD()
-options.host = askHost()
-options.user = askUser()
-options.pwd = askPwd()
-options.allDatabases = askAllDbs()
-options.databases = askDbs()
-options.compressType = askCompressType()
-options.crypt = askCrypt()
+if __name__=="__main__":
+
+    options = BackupOption()
+
+    options.sgbd = askSGBD()
+    options.host = askHost()
+    options.user = askUser()
+    options.pwd = askPwd()
+    options.allDatabases = askAllDbs()
+    options.databases = askDbs()
+    options.compressType = askCompressType()
+    options.crypt = askCrypt()
