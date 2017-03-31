@@ -53,33 +53,49 @@ def stringToBoolean(v):
     return v.lower() in ("true", "1")
 
 
-'''
-Demande à l'utilisateur un entier entre deux valeurs incluses et la retourne
-la demande est réeffectuée tant que la saisie ne correspond pas aux critères
-'''
-def getInt(message,mini, maxi): 
+def getInt(message,mini, maxi):
+    """
+    Demande à l'utilisateur un entier entre deux valeurs incluses et la retourne
+    la demande est réeffectuée tant que la saisie ne correspond pas aux critères
+    """
     while True:
         try:
             nombre_saisi=int(input(message))            
             #si le nombre saisi est un entier correspondant aux critères on quitte la boucle infini
             if nombre_saisi>=mini and nombre_saisi<=maxi:
-                break
+                return nombre_saisi
+            print('Saisissez un entier entre '+str(mini)+' et '+str(maxi))
         #si la saisi n'est pas un entier, affichage erreur et retour au début la boucle infini
         except ValueError:
             print('Saisissez un entier entre '+str(mini)+' et '+str(maxi))
-    return nombre_saisi
 
-'''
-Demande à l'utilisateur une valeur incluse dans un tableau de donnée et la retourne
-la demande est réeffectuée tant que la saisie ne correspond pas aux critères
-'''
-def getValue(message,data): 
+def getValue(message,data=[]):
+    """
+    Demande à l'utilisateur une valeur incluse dans un tableau de donnée s'il est spécifié et la retourne
+    la demande est réeffectuée tant que la saisie ne correspond pas aux critères éventuels
+    """ 
     while True:
-        valeur_saisie=input(message)            
+        valeur_saisie=input(message)
         #si le nombre saisi est un entier correspondant aux critères on quitte la boucle infini
-        if valeur_saisie in data:
-            break
-    return valeur_saisie
+        if(len(data)==0 or valeur_saisie in data):
+            return valeur_saisie
+
+def confirm(message,tableau=[]):
+    """
+    Demande à l'utilisateur de saisir des informations et demande une confirmation
+    Affiche un message et une eventuelle liste de choix
+    La demande boucle tant qu'une valeur n'est pas confirmée
+    """
+    while True:
+        if (len(tableau)==0):
+            reponse=getValue(message)
+        else:
+            reponse = tableau[askChoice(message,tableau)]            
+        confirm = getValue("Confirmez-vous votre choix : "+reponse+" ? y/n : ",["y","n"])
+        if (confirm=="y"):
+            return reponse
+        else:
+            continue
 
 '''            
 def call(host='162.243.164.132',user='jules',password='jules',db='backupTest'):
