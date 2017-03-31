@@ -13,7 +13,7 @@ class BackupOption(object):
     compressType : une constante representant le type de compression 
     crypt : un booleen representant si l'utilisateur veut crypter les fichiers
     """
-    
+
 
     def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False):
         """
