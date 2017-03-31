@@ -1,10 +1,9 @@
 import os
-import pymysql
 from tkinter import TclError,messagebox
-from backupOptions import BackupOption
+import logging
 
-#fonction permettant de centrer une fenêtre sur l'écran
 def centerFrame(frame):
+    """ fonction permettant de centrer une fenêtre sur l'écran """
     frame.withdraw()
     frame.update_idletasks()
     x = (frame.winfo_screenwidth() - frame.winfo_reqwidth()) / 2
@@ -12,19 +11,42 @@ def centerFrame(frame):
     frame.geometry("+%d+%d" % (x, y))
     frame.deiconify()
 
-#affiche un message dans une pop up ou en console suivant les ressources du système
-def display(title,message):    
+def display(message,title=""):
+    """ affiche un message dans une pop up ou en console suivant les ressources du système """    
     try:
-        messagebox.showerror(title, message)
-    except TclError as e:
-        print("----"+title+"----")
-        print(message)        
+        messagebox.showinfo(title, message)
+    except TclError:
+        if (title!=""): print("----"+title+"----")
+        print(message)
 
-def displayMessage(message):
-    display("Information", message)
+def displayInfo(message):
+    """ affiche un message dans une pop up ou en console suivant les ressources du système et enregistre le message dans les logs """    
+    display(message,"Information")
+    initLog()
+    logging.info(message)
 
 def displayError(message):
-    display("Erreur", message)
+    """ affiche une erreur dans une pop up ou en console suivant les ressources du système et enregistre le message dans les logs """
+    try:
+        messagebox.showerror("Erreur", message)
+    except TclError:
+        print("----Erreur----")
+        print(message)
+    initLog()
+    logging.error(message)
+    
+    
+def initLog():
+    """ 
+    initialise les paramètres de logging : 
+    fichier backup.log en mode append
+    format : date - level : message
+    """
+    logging.basicConfig(filename='backup.log',
+                        filemode = 'a',
+                        level=logging.DEBUG,
+                        format='%(asctime)s - %(levelname)s : %(message)s', 
+                        datefmt='%Y/%m/%d %H:%M:%S')
 
 '''
 Demande à l'utilisateur un entier entre deux valeurs incluses et la retourne
