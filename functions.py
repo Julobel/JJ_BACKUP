@@ -80,6 +80,16 @@ def getValue(message,data=[]):
         if(len(data)==0 or valeur_saisie in data):
             return valeur_saisie
 
+def askChoice(message,choices):
+    """ 
+    affiche une message et une liste de choix et demande une des valeurs à l'utilisateur 
+    retourne un entier correspondant l'index du tableau choices
+    """
+    print(message)
+    for i in range(0,len(choices)):
+        print(str(i+1)+" : "+choices[i])
+    return getInt("Votre Choix ? : ",1,len(choices))-1
+
 def confirm(message,tableau=[]):
     """
     Demande à l'utilisateur de saisir des informations et demande une confirmation
