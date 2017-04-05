@@ -200,7 +200,7 @@ class OptionFrame(Tk):
             if(self.enable[i].get()):
                 self.options.addDatabase(self.databasesList[i])
             else:
-                self.options.removeDatabe(self.databasesList[i])
+                self.options.removeDatabase(self.databasesList[i])
         #destruction de la fenetre
         self.choiceWindowOpen=False   
         self.choiceDbWindow.destroy()

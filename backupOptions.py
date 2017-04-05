@@ -33,7 +33,7 @@ class BackupOption(object):
         if database not in self.databases:
             self.databases.append(database)
      
-    def removeDatabe(self, database):
+    def removeDatabase(self, database):
         """ supprimme une bdd de la liste """
         if database in self.databases:
             self.databases.remove(database)
