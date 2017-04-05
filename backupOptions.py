@@ -28,7 +28,7 @@ class BackupOption(object):
         self.compressType = compressType
         self.crypt = crypt
      
-    def addDatabe(self, database):
+    def addDatabase(self, database):
         """ ajoute une bdd à la liste """
         if database not in self.databases:
             self.databases.append(database)

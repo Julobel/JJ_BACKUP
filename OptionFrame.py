@@ -198,7 +198,7 @@ class OptionFrame(Tk):
         # en fonction on les ajoute ou les supprimme de la liste
         for i in range(0,len(self.databasesList)):
             if(self.enable[i].get()):
-                self.options.addDatabe(self.databasesList[i])
+                self.options.addDatabase(self.databasesList[i])
             else:
                 self.options.removeDatabe(self.databasesList[i])
         #destruction de la fenetre
