@@ -43,7 +43,7 @@ class MySQLBackup(IBackup):
                  db=dbName,charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
         except pymysql.err.OperationalError as e1:
             if(e1.args[0]==1044):
-                displayError("Acces refusé! Vous ne disposez pas des droits nécessaires d'accès à la base")
+                displayError("Accès refusé! Vous ne disposez pas des droits nécessaires d'accès à la base")
             else:   
                 displayError("Error " +str(e1.args[0])+"\n"+e1.args[1])        
         except pymysql.err.InternalError as e2:

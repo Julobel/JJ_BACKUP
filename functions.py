@@ -13,40 +13,42 @@ def centerFrame(frame):
 
 def display(message,title=""):
     """ affiche un message dans une pop up ou en console suivant les ressources du système """    
-    try:
-        messagebox.showinfo(title, message)
-    except TclError:
+    if(os.isatty(sys.stdin.fileno())):
         if (title!=""): print("----"+title+"----")
         print(message)
+    else:
+        messagebox.showinfo(title, message)
 
 def displayInfo(message):
     """ affiche un message dans une pop up ou en console suivant les ressources du système et enregistre le message dans les logs """    
     display(message,"Information")
-    initLog()
-    logging.info(message)
+    initLog().info(message)
 
 def displayError(message):
     """ affiche une erreur dans une pop up ou en console suivant les ressources du système et enregistre le message dans les logs """
-    try:
-        messagebox.showerror("Erreur", message)
-    except TclError:
+    if(os.isatty(sys.stdin.fileno())):
         print("----Erreur----")
         print(message)
-    initLog()
-    logging.error(message)
+    else:
+        messagebox.showerror("Erreur", message)
+    initLog().error(message)
     
     
 def initLog():
     """ 
     initialise les paramètres de logging : 
-    fichier backup.log en mode append
+    fichier backup.log en mode append et UTF8
     format : date - level : message
-    """
-    logging.basicConfig(filename='backup.log',
-                        filemode = 'a',
-                        level=logging.DEBUG,
-                        format='%(asctime)s - %(levelname)s : %(message)s', 
-                        datefmt='%Y/%m/%d %H:%M:%S')
+    :return: Logger objet
+    """    
+    logger= logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    handler = logging.FileHandler('backup.log', 'a', 'utf-8') 
+    handler.setLevel(logging.DEBUG)
+    handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s : %(message)s',
+                                           datefmt='%Y/%m/%d %H:%M:%S')) 
+    logger.addHandler(handler)
+    return logger
 
 def stringToBoolean(v):
     """ convertit une chaine de caractère en booleen """

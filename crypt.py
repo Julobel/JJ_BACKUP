@@ -1,17 +1,26 @@
 from random import randrange
 
-#genère une chaine de caractère aléatoire de la longueure spécifiée
 def generateEncryptionKey(length):
+    """
+    Genère une chaine de caractère aléatoire de la longueur spécifiée
+    :param key: integer longueur de la clé de cryptage à générer
+    :return: string une clé aleatoire
+    """
     akey=""
     for i in range (0,length):
         codeAscii = randrange(255)
         akey = akey + chr(codeAscii)
     return akey
 
-#applique un cryptage symetrique du message spécifié avec la clé specifié
-#cf   https://fr.wikipedia.org/wiki/Cryptographie_symétrique#Petite_taxinomie_du_chiffrement_sym.C3.A9trique_classique
-#retourne la chaine de caractère cryptée
+
 def encryption(message,key):
+    """
+    Applique un cryptage symetrique du message spécifié avec la clé specifié
+    cf   https://fr.wikipedia.org/wiki/Cryptographie_symétrique#Petite_taxinomie_du_chiffrement_sym.C3.A9trique_classique
+    :param message: string le message à crypter
+    :param key: string la clé de cryptage
+    :return: string le message crypté
+    """
     messageArray=list(message)        
     keyArray=list(key)
     messageArray.append('.')
@@ -19,7 +28,7 @@ def encryption(message,key):
     #on rajoute des * pour completer le message
     for i in range(0,len(keyArray)-modulus):
         messageArray.append("*")
-    #on decoupe le tableau
+    #on découpe le tableau
     tempArr=[]
     for i in range(0,len(messageArray),len(keyArray)):
         tempArr.append(messageArray[i:i+len(keyArray)])
@@ -30,8 +39,12 @@ def encryption(message,key):
         msg+=''.join(tempArr[oldSort[i]])
     return msg
 
-#transpose un tableeau de ligne en un tableau de colonne
 def _transposeDoubleArray(tab):
+    """
+    transpose un tableau de ligne en un tableau de colonne
+    :param tab: un tableau
+    :return: List le tableau transposé
+    """
     res=[]
     rowLength=len(tab[0])
     for j in range (0,rowLength):
@@ -41,8 +54,13 @@ def _transposeDoubleArray(tab):
         res.append(col)
     return res
 
-#tri un tableau et retourne un tableau avec les index de l'ancien ordre
+#
 def _sortKey(keyArr):
+    """
+    tri un tableau et retourne un tableau avec les index de l'ancien ordre
+    :param keyArr: un tableau
+    :return: integer List le tableau des anciens index trié
+    """
     result=[]
     for i in range(0,len(keyArr)):
         result.append(i)
@@ -52,16 +70,19 @@ def _sortKey(keyArr):
                 tempIndex=result[j]
                 result[j] = result[j+1]
                 result[j+1] = tempIndex
-                               
                 temp = keyArr[j]
                 keyArr[j] = keyArr[j+1]
                 keyArr[j+1] = temp
     return result
 
-    
-#decrypt un message d'après la clé fournie
-#renvoie une ValueError n°53236 si la cle n'est pas adaptée au message (longueur du message mod longueur de la clé différent de 0
 def decryption(message,key):
+    """
+    Décrypte un message d'après la clé fournie
+    :param message: string le message à décrypter
+    :param key: string la clé de décryptage
+    :return: string le message décrypté
+    :throw ValueError n°53236 si la cle n'est pas adaptée au message (longueur du message mod longueur de la clé différent de 0
+    """
     if ( len(message)% len(key)!=0):
         raise ValueError(53236,'Invalid crypt Key')
     messageArray=list(message)
