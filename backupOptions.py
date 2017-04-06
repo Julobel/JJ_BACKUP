@@ -12,10 +12,11 @@ class BackupOption(object):
     allDatabases : un booleen representant si l'utilisateur veut sauvegarder toutes les BDD
     compressType : une constante representant le type de compression 
     crypt : un booleen representant si l'utilisateur veut crypter les fichiers
+    cryptKey : une chaine de caractere representant la clé de cryptage
     """
 
 
-    def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False):
+    def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False,cryptKey=""):
         """
         initialisation des attributs
         """
@@ -27,6 +28,7 @@ class BackupOption(object):
         self.allDatabases = allDatabases
         self.compressType = compressType
         self.crypt = crypt
+        self.cryptKey = cryptKey
      
     def addDatabase(self, database):
         """ ajoute une bdd à la liste """
@@ -47,7 +49,8 @@ class BackupOption(object):
                                 'databases':self.databases,
                                 'allDatabases': self.allDatabases,
                                 'compressType': self.compressType,
-                                'crypt': self.crypt
+                                'crypt': self.crypt,
+                                'cryptKey': self.cryptKey
                                 }
         return res.__str__()
     
@@ -60,7 +63,8 @@ class BackupOption(object):
                                 'pwd': self.pwd,
                                 'allDatabases': self.allDatabases,
                                 'compressType': self.compressType,
-                                'crypt': self.crypt
+                                'crypt': self.crypt,
+                                'cryptKey': self.cryptKey
                                 }
         
         config['options']['databases'] =','.join(self.databases)        
@@ -84,4 +88,5 @@ class BackupOption(object):
         option.allDatabases = stringToBoolean(config['options']['allDatabases'])
         option.compressType = config['options']['compressType']
         option.crypt = stringToBoolean(config['options']['crypt'])
+        option.cryptKey = config['options']['cryptKey']
         return option
