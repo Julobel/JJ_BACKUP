@@ -75,7 +75,7 @@ class BackupOption(object):
     def createFromConfFile(filePath):
         """ Retourne un objet BackupOption à partir du fichier conf spécifié """
         config = configparser.ConfigParser()
-        config.read('conf\\site1.conf')
+        config.read(filePath)
         option = BackupOption()
         option.sgbd = config['options']['sgbd']
         option.host = config['options']['host']
