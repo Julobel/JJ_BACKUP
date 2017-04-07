@@ -21,6 +21,8 @@ def encryption(message,key):
     :param key: string la clé de cryptage
     :return: string le message crypté
     """
+    if (len(key)==0):
+        return message
     messageArray=list(message)        
     keyArray=list(key)
     messageArray.append('.')
@@ -83,6 +85,8 @@ def decryption(message,key):
     :return: string le message décrypté
     :throw ValueError n°53236 si la cle n'est pas adaptée au message (longueur du message mod longueur de la clé différent de 0
     """
+    if (len(key)==0):
+        return message
     if ( len(message)% len(key)!=0):
         raise ValueError(53236,'Invalid crypt Key')
     messageArray=list(message)
