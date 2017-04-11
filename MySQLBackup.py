@@ -78,40 +78,42 @@ class MySQLBackup(IBackup):
         except Exception as e:
             return None
 
+    def backup(self, counter):
+        # creation d'un dossier pour cette base s'il n'existe pas
+        backupDbPath = "backups/" + self.options.databases[counter]
+        print("Création du dossier pour le backup")
+        if not os.path.exists(backupDbPath):
+            os.makedirs(backupDbPath)
+
+        # chemin et nom du fichier sql
+        backupFilePath = backupDbPath + "/" + self.options.databases[counter] + "-" + time.strftime(
+            '%Y%m%d-%H%M%S') + ".sql"
+
+        # creation de la commande mysqldump
+        dumpcmd = "mysqldump -u " + self.options.user
+        if (self.options.pwd != ""):
+            dumpcmd += " -p" + self.options.pwd
+        if (self.options.host != ""):
+            dumpcmd += " -h " + self.options.host
+        dumpcmd += " " + self.options.databases[counter] + " > " + backupFilePath
+        print("dumpcmd -> " + dumpcmd)
+
+        # execution de la commande et recuperation du statut
+        output = os.system(dumpcmd)
+
+        if output == 0:
+            displayInfo("Le backup de la base de donnée '" + self.options.databases[
+                counter] + "'a été créé dans le dans le dossier " + backupFilePath)
+
     def execute(self):
         """
         Exécute la sauvegarde en fonction des options
         Et créé un dossier si inexistant par BDD, ainsi qu'un fichier dump MySql pour chaque base de données
         """
-
         if self.serverConnect() != None:
             for counter in range(0, len(self.options.databases)):
                 if self.dbConnect(self.options.databases[counter]) != None:
-                    # creation d'un dossier pour cette base s'il n'existe pas
-                    backupDbPath = "backups/" + self.options.databases[counter]
-                    print("Création du dossier pour le backup")
-                    if not os.path.exists(backupDbPath):
-                        os.makedirs(backupDbPath)
-
-                    # chemin et nom du fichier sql
-                    backupFilePath = backupDbPath + "/" + self.options.databases[counter] + "-" + time.strftime('%Y%m%d-%H%M%S') + ".sql"
-
-                    # creation de la commande mysqldump
-                    dumpcmd = "mysqldump -u " + self.options.user
-                    if (self.options.pwd != ""):
-                        dumpcmd += " -p" + self.options.pwd
-                    if (self.options.host != ""):
-                        dumpcmd += " -h " + self.options.host
-                    dumpcmd += " " + self.options.databases[counter] + " > " + backupFilePath
-                    print("dumpcmd -> " + dumpcmd)
-
-                    # execution de la commande et recuperation du statut
-                    output = os.system(dumpcmd)
-
-                    if output == 0:
-                        displayInfo("Le backup de la base de donnée '" + self.options.databases[
-                            counter] + "'a été créé dans le dans le dossier " + backupFilePath)
-
+                    self.backup(counter)
 
 if __name__=="__main__":
     # if os.isatty(sys.stdin.fileno()):
