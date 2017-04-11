@@ -6,6 +6,7 @@ import tarfile
 
 
 #constantes pour le type de compression
+COMPRESS_NONE = "Aucun"
 COMPRESS_ZIP = "zip"
 COMPRESS_GZ = "gz"
 COMPRESS_BZ2 = "bz2"
@@ -21,7 +22,7 @@ def compressFile(filePath,archiveType):
     elif (archiveType in (COMPRESS_GZ,COMPRESS_BZ2)):
         if (_tarFile(filePath,archiveType)):
             os.remove(filePath)
-    else:
+    elif archiveType not in getCompressTypeList():
         raise ValueError('Invalid compession system')
     
 
@@ -49,4 +50,10 @@ def _tarFile(filePath,archiveType):
         success=True
     return success
 
-
+def getCompressTypeList():
+    res=[]
+    res.append(COMPRESS_NONE)
+    res.append(COMPRESS_BZ2)
+    res.append(COMPRESS_GZ)
+    res.append(COMPRESS_ZIP)
+    return res

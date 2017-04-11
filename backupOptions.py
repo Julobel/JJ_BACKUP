@@ -1,5 +1,9 @@
+import configparser
+from consoleOptions import *
+from functions import stringToBoolean
+
 class BackupOption(object):
-    '''
+    """
     Classe contenant les différentes options nécessaires à la sauvegarde
     sgbd : une constante representant le sgbd
     host : une chaine de caractere representant l'adresse IP ou le nom de domaine
@@ -9,20 +13,16 @@ class BackupOption(object):
     allDatabases : un booleen representant si l'utilisateur veut sauvegarder toutes les BDD
     compressType : une constante representant le type de compression 
     crypt : un booleen representant si l'utilisateur veut crypter les fichiers
-    '''
-    
-    #constantes pour le sgbd
-    SGBD_MYSQL = "MySQL"
-    SGBD_ORACLE = "Oracle"
-    SGBD_SQLSERVER = "SQL Server"
-    SGBD_POSTGRE = "PostgreSQL"
-    SGBD_SQLLITE = "SQLite"
-    
+    cryptKey : une chaine de caractere representant la clé de cryptage
+    """
 
-    def __init__(self,sgbd="", host="localHost",user="",pwd="",databases=[],allDatabases=False,compressType="",crypt=False):
-        '''
+# 43.77
+# 43.15
+
+    def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False,cryptKey=""):
+        """
         initialisation des attributs
-        '''
+        """
         self.sgbd = sgbd
         self.host = host
         self.user = user
@@ -31,16 +31,75 @@ class BackupOption(object):
         self.allDatabases = allDatabases
         self.compressType = compressType
         self.crypt = crypt
-     
-    def addDatabe(self, database):
+        self.cryptKey = cryptKey
+
+    def recoveryOptions(self):
+        self.sgbd = askSGBD()
+        self.host = askHost()
+        self.user = askUser()
+        self.pwd = askPwd()
+        self.allDatabases = askAllDbs()
+        self.databases = askDbs()
+        self.crypt = askCrypt()
+        self.compressType = askCompressType()
+
+    def addDatabase(self, database):
+        """ ajoute une bdd à la liste """
         if database not in self.databases:
             self.databases.append(database)
      
-    def removeDatabe(self, database):
+    def removeDatabase(self, database):
+        """ supprimme une bdd de la liste """
         if database in self.databases:
             self.databases.remove(database)
     
-    def ask(self):
-        pass
+    def __str__(self, *args, **kwargs):
+        """ couvertit l'objet en chaine de caractères """
+        res = {'sgbd': self.sgbd,
+                                'host': self.host,
+                                'user': self.user,
+                                'pwd': self.pwd,
+                                'databases':self.databases,
+                                'allDatabases': self.allDatabases,
+                                'compressType': self.compressType,
+                                'crypt': self.crypt,
+                                'cryptKey': self.cryptKey
+                                }
+        return res.__str__()
     
+    def saveToConfFile(self,filePath):
+        """ sauvegarde les option dans un fichier conf dans le fichier spécifié"""
+        config = configparser.ConfigParser()
+        config['options'] =  {'sgbd': self.sgbd,
+                                'host': self.host,
+                                'user': self.user,
+                                'pwd': self.pwd,
+                                'allDatabases': self.allDatabases,
+                                'compressType': self.compressType,
+                                'crypt': self.crypt,
+                                'cryptKey': self.cryptKey
+                                }
+        
+        config['options']['databases'] =','.join(self.databases)        
+        with open(filePath, 'w') as configfile:
+            config.write(configfile)
     
+    @staticmethod
+    def createFromConfFile(filePath):
+        """ Retourne un objet BackupOption à partir du fichier conf spécifié """
+        config = configparser.ConfigParser()
+        config.read(filePath)
+        option = BackupOption()
+        option.sgbd = config['options']['sgbd']
+        option.host = config['options']['host']
+        option.user = config['options']['user']
+        option.pwd = config['options']['pwd']
+        if(len(config['options']['databases'])==0):
+            option.databases = []
+        else:
+            option.databases = config['options']['databases'].split(",")
+        option.allDatabases = stringToBoolean(config['options']['allDatabases'])
+        option.compressType = config['options']['compressType']
+        option.crypt = stringToBoolean(config['options']['crypt'])
+        option.cryptKey = config['options']['cryptKey']
+        return option

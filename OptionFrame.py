@@ -1,9 +1,8 @@
-#!C:\Users\JB\AppData\Local\Programs\Python\Python35-32\python.exe
-from tkinter import Tk,Frame,Toplevel,Canvas,LabelFrame,Label,Entry,Button,Checkbutton,OptionMenu,END,IntVar,StringVar,messagebox
-from functions import centerFrame
-from compress import compressFile
+from tkinter import Tk,Frame,Toplevel,Canvas,LabelFrame,Label,Entry,Button,Checkbutton,OptionMenu,END,IntVar,StringVar
+from functions import centerFrame, displayError
+from compress import COMPRESS_BZ2,COMPRESS_GZ,COMPRESS_ZIP
 from backupOptions import BackupOption
-import pymysql
+from BackupFactory import BackupFactory
     
 class OptionFrame(Tk): 
     def __init__(self,options):
@@ -14,24 +13,23 @@ class OptionFrame(Tk):
         self.options = options
         self.build()
         centerFrame(self)
-    
+
     #positionnement des éléments de la fenêtre
     def build(self):
         i=0
         j=0
-        
-                
         #liste des SGBD
         labelHote = Label(self.canevas, text="SGBD : ")
         labelHote.grid(row=i,column=j,columnspan=1,padx=10,pady=10,sticky="e")
-        self.options.sgbd = StringVar()
-        self.options.sgbd.set(BackupOption.SGBD_MYSQL)        
-        self.sgbdList = OptionMenu(self.canevas, self.options.sgbd, 
-                                   BackupOption.SGBD_MYSQL, 
-                                   BackupOption.SGBD_ORACLE,
-                                   BackupOption.SGBD_SQLSERVER, 
-                                   BackupOption.SGBD_POSTGRE,
-                                   BackupOption.SGBD_SQLLITE)
+        
+        self.sgbd = StringVar()
+        supportedSGBD = BackupFactory.getSupportedSGBD()
+        
+        if(len(supportedSGBD)>0):
+            self.sgbdList = OptionMenu(self.canevas, self.sgbd,*supportedSGBD)
+            self.sgbd.set(supportedSGBD[0])  
+        else:
+            self.sgbdList = OptionMenu(self.canevas,self.sgbd,None)
         self.sgbdList.config(width=23)
         self.sgbdList.grid(row=i,column=j+1,columnspan=2,padx=5,pady=0)
         
@@ -39,25 +37,24 @@ class OptionFrame(Tk):
         #hôte
         labelHote = Label(self.canevas, text="Hote : ")
         labelHote.grid(row=i,column=j,columnspan=1,padx=10,pady=10,sticky="e")
-        self.options.host = StringVar()
-        self.inputHote = Entry(self.canevas, width=30, textvariable=self.options.host)
-        self.options.host.set("localhost")
+        self.host = StringVar()
+        self.inputHote = Entry(self.canevas, width=30, textvariable=self.host)
         self.inputHote.grid(row=i,column=j+1,columnspan=2,padx=5,pady=10)
         
         i=i+1
         #nom utilisateur
-        self.options.user = StringVar()
-        labelUtil = Label(self.canevas, text="Utilisateur : ",textvariable=self.options.user)
+        self.user = StringVar()
+        labelUtil = Label(self.canevas, text="Utilisateur : ")
         labelUtil.grid(row=i,column=j,columnspan=1,padx=5,pady=10,sticky="e")   
-        self.inputUtil = Entry(self.canevas, width=30)
+        self.inputUtil = Entry(self.canevas, width=30,textvariable=self.user)
         self.inputUtil.grid(row=i,column=j+1,columnspan=2,padx=5,pady=10)
         
         i=i+1
         #mot de passe
-        self.options.pwd = StringVar()
-        labelPwd = Label(self.canevas, text="Mot de passe : ",textvariable=self.options.pwd)
+        self.pwd = StringVar()
+        labelPwd = Label(self.canevas, text="Mot de passe : ")
         labelPwd.grid(row=i,column=j,columnspan=1,padx=5,pady=10,sticky="e")
-        self.inputPwd = Entry(self.canevas,show="*", width=30)
+        self.inputPwd = Entry(self.canevas,show="*", width=30,textvariable=self.pwd)
         self.inputPwd.grid(row=i,column=j+1,columnspan=2,padx=5,pady=10)
         
         
@@ -71,8 +68,8 @@ class OptionFrame(Tk):
         self.addBtn.grid(row=i,column=j+2,columnspan=1,padx=5,pady=10)
         
         i=i+1
-        self.options.allDatabases = IntVar()
-        checkBut = Checkbutton(self.canevas,text="Toutes les bases",variable=self.options.allDatabases,command=self.changeAllDbState)
+        self.allDatabases = IntVar()
+        checkBut = Checkbutton(self.canevas,text="Toutes les bases",variable=self.allDatabases,command=self.updateInputDb)
         checkBut.grid(row=i,column=1,columnspan=1,padx=5,pady=0,sticky="w")
         
         i=i+1
@@ -88,9 +85,9 @@ class OptionFrame(Tk):
         compressCheckBut.grid(row=iParam,column=jParam,columnspan=1,padx=5,pady=0,sticky="w")
         
         #liste des type de compression qui s'active uniquement lorsque l'option compression est cochée
-        self.options.compressType = StringVar()
-        self.options.compressType.set("zip")
-        self.compressionTypeList = OptionMenu(paramFrame, self.options.compressType, "zip", "gz", "bz2")
+        self.compressType = StringVar()
+        self.compressionTypeList = OptionMenu(paramFrame, self.compressType, COMPRESS_ZIP, COMPRESS_GZ, COMPRESS_BZ2)
+        self.compressType.set(COMPRESS_ZIP)
         self.compressionTypeList.config(width=4)
         self.compressionTypeList.config(state='disable')
         self.compressionTypeList.grid(row=iParam,column=jParam+1,columnspan=1,padx=5,pady=0)
@@ -98,25 +95,25 @@ class OptionFrame(Tk):
         
         iParam=iParam+1
         #case à cocher pour le cryptage
-        self.options.crypt = IntVar()
-        compressCheckBut = Checkbutton(paramFrame,text="Crypter",variable=self.options.crypt)
-        compressCheckBut.grid(row=iParam,column=jParam,columnspan=1,padx=5,pady=0,sticky="w")
+        self.crypt = IntVar()
+        cryptCheckBut = Checkbutton(paramFrame,text="Crypter",variable=self.crypt,command=self.askKey)
+        cryptCheckBut.grid(row=iParam,column=jParam,columnspan=1,padx=5,pady=0,sticky="w")
+        
         
         i=i+1
+        
+        butFrame = Frame(self.canevas)
+        butFrame.grid( row=i, column=0,columnspan=3,padx=5, pady=10)
+        
         #boutton de validation
-        self.validBtn=Button(self.canevas,text='Valider', command=self.validAction)
-        self.validBtn.grid(row=i,column=0,columnspan=3,padx=5,pady=10)
-                
+        self.exeBtn=Button(butFrame,text='Executer', command=self.validAction)
+        self.exeBtn.grid(row=0,column=0,columnspan=1,padx=5,pady=10)
+                               
+        #boutton quitter
+        self.quitBtn=Button(butFrame,text='Quitter', command=self.destroy)
+        self.quitBtn.grid(row=0,column=1,columnspan=1,padx=5,pady=10)
+        
         self.canevas.pack()
-    
-    #active ou desactive le chanmp du nom des BDD
-    def changeAllDbState(self):
-        if(self.options.allDatabases.get()):
-            self.inputDb.config(state='disable')
-            self.addBtn.config(state='disable')
-        else:
-            self.inputDb.config(state='readonly')
-            self.addBtn.config(state='normal')
             
     #active ou desactive le choix de la compression        
     def changeCompressState(self):
@@ -130,45 +127,48 @@ class OptionFrame(Tk):
         #reactivation et suppression du texte
         self.inputDb.config(state='normal')
         self.inputDb.delete(0, END)
-        # si toute les base sont selectionnés, on affiche une étoile
-        # sinon la list des base
-        if(self.options.allDatabases.get()):
+        # si toute les bases sont selectionnées, on affiche une étoile et on desactive le bouton ajouter
+        # sinon la liste des bases et on active le bouton ajouter
+        if(self.allDatabases.get()):
             self.inputDb.insert(0,"*")
             self.inputDb.config(state='disable')
+            self.addBtn.config(state='disable')
         else:
             self.inputDb.insert(0, self.options.databases)
             self.inputDb.config(state='readonly')
-            
+            self.addBtn.config(state='normal')
+    
+    #affichage de la fenetre
     def show(self):
         self.mainloop() 
     
+    #affichage d'une fenetre pour choisir les BDD
     def showDbChoiceFrame(self):
+        #si la fenetre n'est pas ouverte
         if(not self.choiceWindowOpen):
-            self.choiceWindowOpen=True
-            self.choiceDbWindow = Toplevel(self.master)
-            self.choiceDbWindow.protocol("WM_DELETE_WINDOW", self.cancelChange)
-            self.choiceDbFrame = Frame(self.choiceDbWindow)
-            try:
-                connection = pymysql.connect(host=self.inputHote.get(), user=self.inputUtil.get(), password=self.inputPwd.get(),
-                    charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+            #MAJ des données saisies et recupération de la liste des BDD
+            self.updateOptions()
+            backup = BackupFactory.create(self.options)                
+            databases =  backup.getDatabases()
+            if(databases is not None):
+                #affichage d'une fentre'
+                self.choiceWindowOpen=True
+                self.choiceDbWindow = Toplevel(self.master)
+                self.choiceDbWindow.protocol("WM_DELETE_WINDOW", self.cancelChange)
+                self.choiceDbFrame = Frame(self.choiceDbWindow)
                 self.choiceDbWindow.title("BDD")
                 self.databasesList=[]
                 self.enable=[]
-                
-                cursor = connection.cursor()
-                cursor.execute('SHOW DATABASES')
-                database = cursor.fetchone()
-                connection.close()
-                while database:
-                    self.databasesList.append(database['Database'])
+                #création des varibles résultat pour chaque base stocké dans un tableau enable[]
+                for database in databases:
+                    self.databasesList.append(database)
                     self.enable.append(IntVar())
-                    if(database['Database'] in self.options.databases):
+                    if(database in self.options.databases):
                         self.enable[-1].set(1)
                     else:
                         self.enable[-1].set(0)
-                    database = cursor.fetchone()
-                    
                 row=0
+                #creation d'un checkbox par base de données
                 for i in range(0,len(self.databasesList)):
                     #case à cocher pour chaque base
                     checkBut = Checkbutton(self.choiceDbFrame,text=self.databasesList[i],variable=self.enable[i])
@@ -178,46 +178,82 @@ class OptionFrame(Tk):
                 #boutton de validation
                 dbChoiceFrameValidBtn=Button(self.choiceDbFrame,text='Valider',command=self.validChoice)
                 dbChoiceFrameValidBtn.grid(row=row,column=0,columnspan=3,padx=5,pady=10)  
-                        
-                self.choiceDbFrame.pack()            
+                            
+                self.choiceDbFrame.pack()
                 centerFrame(self.choiceDbWindow)
-            except pymysql.err.OperationalError as e1:
-                if(e1.args[0]==2003):
-                    messagebox.showerror("Erreur", "Impossible de se connecter au serveur : "+self.inputHote.get())   
-                     
+                
+    #MAJ des saisie utilisateur dans l'objet BackupOption
+    def updateOptions(self):
+        self.options.sgbd = self.sgbd.get()
+        self.options.host = self.host.get()
+        self.options.user = self.user.get()
+        self.options.pwd = self.pwd.get()
+        self.options.allDatabases = self.allDatabases.get()
+        self.options.compressType = self.compressType.get()
+        self.options.crypt = self.crypt.get()
+        if(self.allDatabases.get()):
+            backup = BackupFactory.create(self.options)
+            self.options.databases =  backup.getDatabases()
+        
+                         
     def validChoice(self):
         #on verifie les checkbox selectionner
         # en fonction on les ajoute ou les supprimme de la liste
         for i in range(0,len(self.databasesList)):
             if(self.enable[i].get()):
-                self.options.addDatabe(self.databasesList[i])
+                self.options.addDatabase(self.databasesList[i])
             else:
-                self.options.removeDatabe(self.databasesList[i])
+                self.options.removeDatabase(self.databasesList[i])
         #destruction de la fenetre
         self.choiceWindowOpen=False   
         self.choiceDbWindow.destroy()
         self.updateInputDb()
     
     def cancelChange(self):
-        self.choiceWindowOpen=False   
+        self.choiceWindowOpen=False
         self.choiceDbWindow.destroy()
-        
     
+    #ouverture d'une popup pour saisir la clé de cryptage
+    def askKey(self):
+        self.updateOptions()
+        if(self.options.crypt):
+            #construction de la popup
+            self.popup=Toplevel(self.master)
+            self.popup.title("Clé")
+            label=Label(self.popup,text="Entrez la clé de cryptage")
+            label.pack()
+            self.keyEntry=Entry(self.popup,show="*",width=30)
+            self.keyEntry.insert(0, self.options.cryptKey)
+            self.keyEntry.pack()
+            button=Button(self.popup,text='Ok',command=self.setCryptKey)
+            button.pack()
+            #on cache la fenetre principale
+            self.withdraw()
+            #on centre la popup
+            centerFrame(self.popup)
+            #on attend la reponse de la popup
+            self.wait_window(self.popup)
+            #on reaffiche la fenetre principale et on detruit la popup
+            self.deiconify()
+            self.popup.destroy()
+    
+    #MAJ de la clé de cryptage
+    def setCryptKey(self):
+        self.options.cryptKey = self.keyEntry.get()
+        self.popup.destroy()
+        
     #validation des options
-    def validAction(self):            
-        #for i in range(0,len(self.options.databases)):
-        #    print(self.options.databases[i])
-        if (self.options.sgbd.get()==BackupOption.SGBD_MYSQL):
-            try:
-                self.destroy()
-            except:
-                pass
-        else:
-            messagebox.showerror("Erreur", "Ce SGBD n'est pas géré.")
+    def validAction(self):
+        self.updateOptions()
+        try:
+            backup = BackupFactory.create(self.options)
+            backup.execute()
+        except Exception as e:
+            displayError(e.args[1])
 
 
 if __name__=="__main__":    
-    hFrame = OptionFrame()
+    hFrame = OptionFrame(BackupOption())
     hFrame.show()
 
 
