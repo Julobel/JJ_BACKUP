@@ -96,8 +96,8 @@ class OptionFrame(Tk):
         iParam=iParam+1
         #case à cocher pour le cryptage
         self.crypt = IntVar()
-        compressCheckBut = Checkbutton(paramFrame,text="Crypter",variable=self.crypt)
-        compressCheckBut.grid(row=iParam,column=jParam,columnspan=1,padx=5,pady=0,sticky="w")
+        cryptCheckBut = Checkbutton(paramFrame,text="Crypter",variable=self.crypt,command=self.askKey)
+        cryptCheckBut.grid(row=iParam,column=jParam,columnspan=1,padx=5,pady=0,sticky="w")
         
         
         i=i+1
@@ -191,6 +191,9 @@ class OptionFrame(Tk):
         self.options.allDatabases = self.allDatabases.get()
         self.options.compressType = self.compressType.get()
         self.options.crypt = self.crypt.get()
+        if(self.allDatabases.get()):
+            backup = BackupFactory.create(self.options)
+            self.options.databases =  backup.getDatabases()
         
                          
     def validChoice(self):
@@ -209,8 +212,36 @@ class OptionFrame(Tk):
     def cancelChange(self):
         self.choiceWindowOpen=False
         self.choiceDbWindow.destroy()
-        
     
+    #ouverture d'une popup pour saisir la clé de cryptage
+    def askKey(self):
+        self.updateOptions()
+        if(self.options.crypt):
+            #construction de la popup
+            self.popup=Toplevel(self.master)
+            self.popup.title("Clé")
+            label=Label(self.popup,text="Entrez la clé de cryptage")
+            label.pack()
+            self.keyEntry=Entry(self.popup,show="*",width=30)
+            self.keyEntry.insert(0, self.options.cryptKey)
+            self.keyEntry.pack()
+            button=Button(self.popup,text='Ok',command=self.setCryptKey)
+            button.pack()
+            #on cache la fenetre principale
+            self.withdraw()
+            #on centre la popup
+            centerFrame(self.popup)
+            #on attend la reponse de la popup
+            self.wait_window(self.popup)
+            #on reaffiche la fenetre principale et on detruit la popup
+            self.deiconify()
+            self.popup.destroy()
+    
+    #MAJ de la clé de cryptage
+    def setCryptKey(self):
+        self.options.cryptKey = self.keyEntry.get()
+        self.popup.destroy()
+        
     #validation des options
     def validAction(self):
         self.updateOptions()
