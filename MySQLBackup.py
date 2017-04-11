@@ -1,10 +1,10 @@
 from IBackup import IBackup
 from pathlib import Path
-from functions import displayError
+from functions import displayError, displayInfo
 import pymysql
 import os, time
 import sys, os
-from backupOptions import BackupOption
+from backupOptions import *
 
 class MySQLBackup(IBackup):
     """
@@ -97,7 +97,7 @@ class MySQLBackup(IBackup):
                     backupFilePath = backupDbPath + "/" + self.options.databases[counter] + "-" + time.strftime('%Y%m%d-%H%M%S') + ".sql"
 
                     # creation de la commande mysqldump
-                    dumpcmd = "mysqldum -u " + self.options.user
+                    dumpcmd = "mysqldump -u " + self.options.user
                     if (self.options.pwd != ""):
                         dumpcmd += " -p" + self.options.pwd
                     if (self.options.host != ""):
@@ -108,16 +108,14 @@ class MySQLBackup(IBackup):
                     # execution de la commande et recuperation du statut
                     output = os.system(dumpcmd)
 
-                    # si la commande a echoue suppresion du fichier precedemment créer
-                    print(output)
                     if output == 0:
-                        print("Le backup de la base de donnée '" + self.options.databases[
+                        displayInfo("Le backup de la base de donnée '" + self.options.databases[
                             counter] + "'a été créé dans le dans le dossier " + backupFilePath)
 
 
 if __name__=="__main__":
     # if os.isatty(sys.stdin.fileno()):
-        option = BackupOption("MySQL", "localhost", "root", "root", ["backupTest","blablabka", "backupTest2"], False, "zip", False)
+        option = BackupOption("MySQL", "localhost", "root", "root", ["backupTest", "backupTesvtgyb", "backupTest2"], False, "zip", False)
         MySQLBackup(option).execute()
     # else:
     #     print("En graphique")

@@ -1,4 +1,5 @@
 import configparser
+from consoleOptions import *
 from functions import stringToBoolean
 
 class BackupOption(object):
@@ -29,7 +30,19 @@ class BackupOption(object):
         self.compressType = compressType
         self.crypt = crypt
         self.cryptKey = cryptKey
-     
+
+    def recoveryOptions(self):
+        options = BackupOption()
+        options.sgbd = askSGBD()
+        options.host = askHost()
+        options.user = askUser()
+        options.pwd = askPwd()
+        options.allDatabases = askAllDbs()
+        options.databases = askDbs()
+        options.crypt = askCrypt()
+        options.compressType = askCompressType()
+        return options
+
     def addDatabase(self, database):
         """ ajoute une bdd à la liste """
         if database not in self.databases:

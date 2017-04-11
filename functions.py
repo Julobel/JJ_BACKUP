@@ -1,6 +1,8 @@
 import os
 from tkinter import TclError,messagebox
 import logging
+import sys
+
 
 def centerFrame(frame):
     """ fonction permettant de centrer une fenêtre sur l'écran """
