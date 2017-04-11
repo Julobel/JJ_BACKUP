@@ -32,7 +32,7 @@ if(len(sys.argv)>1):
 
 else:
     options =  BackupOption()
-    if(os.isatty(sys.stdin.fileno())):
+    if(sys.stdout.isatty()):
         #TODO appeler du menu principal en console
         pass
     else:
