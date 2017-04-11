@@ -16,6 +16,8 @@ class BackupOption(object):
     cryptKey : une chaine de caractere representant la clé de cryptage
     """
 
+# 43.77
+# 43.15
 
     def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False,cryptKey=""):
         """
@@ -32,16 +34,14 @@ class BackupOption(object):
         self.cryptKey = cryptKey
 
     def recoveryOptions(self):
-        options = BackupOption()
-        options.sgbd = askSGBD()
-        options.host = askHost()
-        options.user = askUser()
-        options.pwd = askPwd()
-        options.allDatabases = askAllDbs()
-        options.databases = askDbs()
-        options.crypt = askCrypt()
-        options.compressType = askCompressType()
-        return options
+        self.sgbd = askSGBD()
+        self.host = askHost()
+        self.user = askUser()
+        self.pwd = askPwd()
+        self.allDatabases = askAllDbs()
+        self.databases = askDbs()
+        self.crypt = askCrypt()
+        self.compressType = askCompressType()
 
     def addDatabase(self, database):
         """ ajoute une bdd à la liste """

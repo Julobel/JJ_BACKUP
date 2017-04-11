@@ -1,10 +1,11 @@
 from IBackup import IBackup
 from pathlib import Path
+
+from backupOptions import BackupOption
 from functions import displayError, displayInfo
 import pymysql
-import os, time
+import time
 import sys, os
-from backupOptions import *
 
 class MySQLBackup(IBackup):
     """
@@ -78,16 +79,15 @@ class MySQLBackup(IBackup):
         except Exception as e:
             return None
 
-    def backup(self, counter):
+    def backup(self, dbName):
         # creation d'un dossier pour cette base s'il n'existe pas
-        backupDbPath = "backups/" + self.options.databases[counter]
+        backupDbPath = "backups/" + dbName + self.options.host.replace(".", "_")
         print("Création du dossier pour le backup")
         if not os.path.exists(backupDbPath):
             os.makedirs(backupDbPath)
 
         # chemin et nom du fichier sql
-        backupFilePath = backupDbPath + "/" + self.options.databases[counter] + "-" + time.strftime(
-            '%Y%m%d-%H%M%S') + ".sql"
+        backupFilePath = backupDbPath + "/" + dbName + "-" + time.strftime('%Y%m%d-%H%M%S') + ".sql"
 
         # creation de la commande mysqldump
         dumpcmd = "mysqldump -u " + self.options.user
@@ -95,15 +95,16 @@ class MySQLBackup(IBackup):
             dumpcmd += " -p" + self.options.pwd
         if (self.options.host != ""):
             dumpcmd += " -h " + self.options.host
-        dumpcmd += " " + self.options.databases[counter] + " > " + backupFilePath
+        dumpcmd += " " + dbName + " > " + backupFilePath
         print("dumpcmd -> " + dumpcmd)
 
         # execution de la commande et recuperation du statut
         output = os.system(dumpcmd)
 
         if output == 0:
-            displayInfo("Le backup de la base de donnée '" + self.options.databases[
-                counter] + "'a été créé dans le dans le dossier " + backupFilePath)
+            displayInfo("Le backup de la base de donnée '" + dbName
+                        + "'a été créé dans le dans le dossier " + backupFilePath)
+        return backupFilePath
 
     def execute(self):
         """
@@ -113,12 +114,13 @@ class MySQLBackup(IBackup):
         if self.serverConnect() != None:
             for counter in range(0, len(self.options.databases)):
                 if self.dbConnect(self.options.databases[counter]) != None:
-                    self.backup(counter)
+                    nameFilePath = self.backup(self.options.databases[counter])
 
 if __name__=="__main__":
     # if os.isatty(sys.stdin.fileno()):
-        option = BackupOption("MySQL", "localhost", "root", "root", ["backupTest", "backupTesvtgyb", "backupTest2"], False, "zip", False)
-        MySQLBackup(option).execute()
+    option = BackupOption()
+    option.recoveryOptions()
+    MySQLBackup(option).execute()
     # else:
     #     print("En graphique")
     #pip install cx_freeze
