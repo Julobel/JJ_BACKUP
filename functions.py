@@ -1,4 +1,3 @@
-import os
 from tkinter import TclError,messagebox
 import logging
 import sys
@@ -15,7 +14,7 @@ def centerFrame(frame):
 
 def display(message,title=""):
     """ affiche un message dans une pop up ou en console suivant les ressources du système """    
-    if(os.isatty(sys.stdin.fileno())):
+    if(sys.stdout.isatty()):
         if (title!=""): print("----"+title+"----")
         print(message)
     else:
@@ -28,7 +27,7 @@ def displayInfo(message):
 
 def displayError(message):
     """ affiche une erreur dans une pop up ou en console suivant les ressources du système et enregistre le message dans les logs """
-    if(os.isatty(sys.stdin.fileno())):
+    if(sys.stdout.isatty()):
         print("----Erreur----")
         print(message)
     else:
