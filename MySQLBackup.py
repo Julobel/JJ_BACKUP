@@ -1,11 +1,10 @@
-from IBackup import IBackup
-from pathlib import Path
-
-from backupOptions import BackupOption
-from functions import displayError, displayInfo
+import time,os
 import pymysql
-import time
-import sys, os
+from IBackup import IBackup
+
+from backupOptions import *
+from functions import displayError, displayInfo
+
 
 class MySQLBackup(IBackup):
     """

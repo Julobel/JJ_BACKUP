@@ -1,8 +1,10 @@
+# coding=utf-8
+
 import configparser
 from consoleOptions import *
 from functions import stringToBoolean
 
-class BackupOption(object):
+class BackupOption():
     """
     Classe contenant les différentes options nécessaires à la sauvegarde
     sgbd : une constante representant le sgbd
@@ -15,9 +17,6 @@ class BackupOption(object):
     crypt : un booleen representant si l'utilisateur veut crypter les fichiers
     cryptKey : une chaine de caractere representant la clé de cryptage
     """
-
-# 43.77
-# 43.15
 
     def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False,cryptKey=""):
         """
@@ -43,16 +42,18 @@ class BackupOption(object):
         self.crypt = askCrypt()
         self.compressType = askCompressType()
 
+        # if all db et akcrypt key
+
     def addDatabase(self, database):
         """ ajoute une bdd à la liste """
         if database not in self.databases:
             self.databases.append(database)
-     
+
     def removeDatabase(self, database):
         """ supprimme une bdd de la liste """
         if database in self.databases:
             self.databases.remove(database)
-    
+
     def __str__(self, *args, **kwargs):
         """ couvertit l'objet en chaine de caractères """
         res = {'sgbd': self.sgbd,
@@ -66,7 +67,7 @@ class BackupOption(object):
                                 'cryptKey': self.cryptKey
                                 }
         return res.__str__()
-    
+
     def saveToConfFile(self,filePath):
         """ sauvegarde les option dans un fichier conf dans le fichier spécifié"""
         config = configparser.ConfigParser()
@@ -79,11 +80,11 @@ class BackupOption(object):
                                 'crypt': self.crypt,
                                 'cryptKey': self.cryptKey
                                 }
-        
-        config['options']['databases'] =','.join(self.databases)        
+
+        config['options']['databases'] =','.join(self.databases)
         with open(filePath, 'w') as configfile:
             config.write(configfile)
-    
+
     @staticmethod
     def createFromConfFile(filePath):
         """ Retourne un objet BackupOption à partir du fichier conf spécifié """
@@ -103,3 +104,6 @@ class BackupOption(object):
         option.crypt = stringToBoolean(config['options']['crypt'])
         option.cryptKey = config['options']['cryptKey']
         return option
+
+if __name__=="__main__":
+    BackupOption().recoveryOptions()

@@ -91,7 +91,7 @@ def askChoice(message,choices):
     print(message)
     for i in range(0,len(choices)):
         print(str(i+1)+" : "+choices[i])
-    return getInt("Votre Choix ? : ",1,len(choices))-1
+    return getInt("Votre Choix: ",1,len(choices))-1
 
 def askBoolean(message):
     value = confirm("\n" + message +" (y/n) : ")

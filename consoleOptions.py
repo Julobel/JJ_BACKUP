@@ -1,8 +1,8 @@
 # coding=utf-8
 
 from functions import *
-from BackupFactory import BackupFactory
-from backupOptions import BackupOption
+import BackupFactory
+import backupOptions
 from compress import getCompressTypeList
 
 
@@ -11,7 +11,7 @@ def askSGBD():
     Demande un nom d'SGBD
     :return: String
     """
-    return confirm("\nChoisissez un SGBD: ", BackupFactory().getSupportedSGBD())
+    return confirm("\nChoisissez un SGBD: ", BackupFactory.BackupFactory().getSupportedSGBD())
 
 def askHost():
     """
@@ -39,7 +39,7 @@ def askAllDbs():
     Demande si le programme doit sauvegarder toutes les bases de données
     :return: Boolean
     """
-    return askBoolean("Voulez-vous sauvegarder toutes les bases de données présentent sur le serveur?")
+    return askBoolean("\nVoulez-vous sauvegarder toutes les bases de données présentent sur le serveur?")
 
 def askDbs():
     """
@@ -72,7 +72,7 @@ def askCompressType():
 
 if __name__=="__main__":
 
-    options = BackupOption()
+    options = backupOptions.BackupOption
 
     options.sgbd = askSGBD()
     options.host = askHost()
