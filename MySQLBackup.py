@@ -81,7 +81,7 @@ class MySQLBackup(IBackup):
     def backup(self, dbName):
         # creation d'un dossier pour cette base s'il n'existe pas
         backupDbPath = "backups/" + dbName + self.options.host.replace(".", "_")
-        print("Création du dossier pour le backup")
+        print("\nCréation du dossier pour le backup")
         if not os.path.exists(backupDbPath):
             os.makedirs(backupDbPath)
 

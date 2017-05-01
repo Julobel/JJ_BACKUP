@@ -1,8 +1,8 @@
 import sys,os
 from OptionFrame import OptionFrame
-from backupOptions import BackupOption
-from functions import displayError
+from functions import displayError,askChoice
 from BackupFactory import BackupFactory
+from backupOptions import BackupOption
 
 
 #si des args on été passés   
@@ -33,7 +33,15 @@ if(len(sys.argv)>1):
 else:
     options =  BackupOption()
     if(sys.stdout.isatty()):
-        #TODO appeler du menu principal en console
+        while askChoice("\n################# MENU PRINCIPAL #################\n",
+                        ["Sauvegarder une base de donnée", "Quitter\n"]) == 0:
+            options = BackupOption()
+            options.recoveryOptions()
+            try:
+                backup = BackupFactory.create(options)
+                backup.execute()
+            except Exception as e:
+                displayError(e.args[1])
         pass
     else:
         hFrame = OptionFrame(options)

@@ -2,6 +2,7 @@
 
 import configparser
 from consoleOptions import *
+from crypt import generateEncryptionKey
 from functions import stringToBoolean
 
 class BackupOption():
@@ -38,8 +39,15 @@ class BackupOption():
         self.user = askUser()
         self.pwd = askPwd()
         self.allDatabases = askAllDbs()
-        self.databases = askDbs()
+        if self.allDatabases:
+            pass
+        else:
+            self.databases = askDbs()
         self.crypt = askCrypt()
+        if self.crypt:
+            pass
+        else:
+            self.cryptKey = generateEncryptionKey(10)
         self.compressType = askCompressType()
 
         # if all db et akcrypt key

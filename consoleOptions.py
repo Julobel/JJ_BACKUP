@@ -11,28 +11,28 @@ def askSGBD():
     Demande un nom d'SGBD
     :return: String
     """
-    return confirm("\nChoisissez un SGBD: ", BackupFactory.BackupFactory().getSupportedSGBD())
+    return askChoice("\nChoisissez un SGBD: ", BackupFactory.BackupFactory().getSupportedSGBD())
 
 def askHost():
     """
     Demande un nom de domaine ou une adresse IP
     :return: String
     """
-    return confirm("\nEntrez le nom de domaine ou l'adresse IP de votre serveur: ")
+    return input("\nEntrez le nom de domaine ou l'adresse IP de votre serveur: ")
 
 def askUser():
     """
     Demande un nom d'utilisateur et le retourne
     :return: String
     """
-    return confirm("\nEntrez votre nom d'utilisateur: ")
+    return input("\nEntrez votre nom d'utilisateur: ")
 
 def askPwd():
     """
     Demande un mot de passe et le retourne
     :return: String
     """
-    return confirm("\nEntrez votre mot de passe: ")
+    return input("\nEntrez votre mot de passe: ")
 
 def askAllDbs():
     """
@@ -46,10 +46,9 @@ def askDbs():
     Demande la liste de la/les base(s) de données à sauvegarder
     :return: String List
     """
-    print ("\nAjoutez le noms de la/les bases de donnée(s) à sauvegarder: ")
     dbTab = []
     while True:
-        db = input("Ajoutez une base de donnée (Laissez vide pour quitter) : ")
+        db = input("\nAjoutez une base de donnée à sauvegarder (Laissez vide pour quitter) : ")
         if db == '':
             return dbTab
         else:
@@ -68,7 +67,7 @@ def askCompressType():
     Demande si le programme doit compresser le fichier de dump, et si oui de quel type
     :return: String
     """
-    return confirm("\nChoisisez ou non un type de compression: ", getCompressTypeList())
+    return askChoice("\nChoisisez ou non un type de compression: ", getCompressTypeList())
 
 if __name__=="__main__":
 
