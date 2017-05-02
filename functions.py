@@ -15,7 +15,7 @@ def centerFrame(frame):
 def display(message,title=""):
     """ affiche un message dans une pop up ou en console suivant les ressources du système """    
     if(sys.stdout.isatty()):
-        if (title!=""): print("----"+title+"----")
+        if (title!=""): print("\n----"+title+"----")
         print(message)
     else:
         messagebox.showinfo(title, message)

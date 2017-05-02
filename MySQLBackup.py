@@ -1,8 +1,8 @@
 import time,os
 import pymysql
 from IBackup import IBackup
-from backupOptions import *
 from crypt import encryptFile
+from backupOptions import *
 from functions import displayError, displayInfo, initLog
 from compress import compressFile,COMPRESS_NONE
 
@@ -84,7 +84,7 @@ class MySQLBackup(IBackup):
         :return: String le chemin relatif du fichier créé
         """
         # creation d'un dossier pour cette base s'il n'existe pas
-        backupDbPath = "backups/" + dbName + self.options.host.replace(".", "_")
+        backupDbPath = "backups/" + self.options.host.replace(".", "_") + "_" + dbName
         initLog().info("Création du dossier pour le backup : "+backupDbPath)
         if not os.path.exists(backupDbPath):
             os.makedirs(backupDbPath)

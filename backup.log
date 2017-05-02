@@ -130,3 +130,43 @@
 2017/05/01 23:32:57 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170501-233256.sql
 2017/05/01 23:32:58 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/backupTest2localhost/backupTest2-20170501-233257.sql
 2017/05/01 23:32:58 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/backupTest2localhost/backupTest2-20170501-233257.sql
+2017/05/02 10:29:36 - INFO : Création du dossier pour le backup : backups/backupTestlocalhost
+2017/05/02 10:29:36 - INFO : dumpcmd -> mysqldump -u root -proot -h localhost backupTest > backups/backupTestlocalhost/backupTest-20170502-102936.sql
+2017/05/02 10:29:36 - INFO : dumpcmd -> mysqldump -u root -proot -h localhost backupTest > backups/backupTestlocalhost/backupTest-20170502-102936.sql
+2017/05/02 10:29:55 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170502-102936.sql
+2017/05/02 10:29:55 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170502-102936.sql
+2017/05/02 10:29:55 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170502-102936.sql
+2017/05/02 10:44:09 - INFO : Création du dossier pour le backup : backups/backupTestlocalhost
+2017/05/02 10:44:09 - INFO : dumpcmd -> mysqldump -u root -proot -h localhost backupTest > backups/backupTestlocalhost/backupTest-20170502-104409.sql
+2017/05/02 10:44:09 - INFO : dumpcmd -> mysqldump -u root -proot -h localhost backupTest > backups/backupTestlocalhost/backupTest-20170502-104409.sql
+2017/05/02 10:44:09 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170502-104409.sql
+2017/05/02 10:44:09 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170502-104409.sql
+2017/05/02 10:44:09 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170502-104409.sql
+2017/05/02 10:47:09 - INFO : Création du dossier pour le backup : backups/mysql_bts2slam10_33_3_61
+2017/05/02 10:47:09 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam > backups/mysql_bts2slam10_33_3_61/mysql_bts2slam-20170502-104709.sql
+2017/05/02 10:47:09 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam > backups/mysql_bts2slam10_33_3_61/mysql_bts2slam-20170502-104709.sql
+2017/05/02 10:47:17 - INFO : Le backup de la base de donnée 'mysql_bts2slam'a été créé dans le dans le dossier backups/mysql_bts2slam10_33_3_61/mysql_bts2slam-20170502-104709.sql
+2017/05/02 10:47:17 - INFO : Le backup de la base de donnée 'mysql_bts2slam'a été créé dans le dans le dossier backups/mysql_bts2slam10_33_3_61/mysql_bts2slam-20170502-104709.sql
+2017/05/02 10:47:17 - INFO : Le backup de la base de donnée 'mysql_bts2slam'a été créé dans le dans le dossier backups/mysql_bts2slam10_33_3_61/mysql_bts2slam-20170502-104709.sql
+2017/05/02 10:47:19 - INFO : Création du dossier pour le backup : backups/mysql_bts2slam_empty10_33_3_61
+2017/05/02 10:47:19 - INFO : Création du dossier pour le backup : backups/mysql_bts2slam_empty10_33_3_61
+2017/05/02 10:47:19 - INFO : Création du dossier pour le backup : backups/mysql_bts2slam_empty10_33_3_61
+2017/05/02 10:47:19 - INFO : Création du dossier pour le backup : backups/mysql_bts2slam_empty10_33_3_61
+2017/05/02 10:47:19 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam_empty > backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:19 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam_empty > backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:19 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam_empty > backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:19 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam_empty > backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:19 - INFO : dumpcmd -> mysqldump -u bts2slam -pbts2slam -h 10.33.3.61 mysql_bts2slam_empty > backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:20 - INFO : Le backup de la base de donnée 'mysql_bts2slam_empty'a été créé dans le dans le dossier backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:20 - INFO : Le backup de la base de donnée 'mysql_bts2slam_empty'a été créé dans le dans le dossier backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:20 - INFO : Le backup de la base de donnée 'mysql_bts2slam_empty'a été créé dans le dans le dossier backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:20 - INFO : Le backup de la base de donnée 'mysql_bts2slam_empty'a été créé dans le dans le dossier backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:20 - INFO : Le backup de la base de donnée 'mysql_bts2slam_empty'a été créé dans le dans le dossier backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:47:20 - INFO : Le backup de la base de donnée 'mysql_bts2slam_empty'a été créé dans le dans le dossier backups/mysql_bts2slam_empty10_33_3_61/mysql_bts2slam_empty-20170502-104719.sql
+2017/05/02 10:58:40 - INFO : Création du dossier pour le backup : backups/localhost_backupTest
+2017/05/02 10:58:40 - INFO : dumpcmd -> mysqldump -u root -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170502-105840.sql
+2017/05/02 10:58:40 - INFO : dumpcmd -> mysqldump -u root -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170502-105840.sql
+2017/05/02 10:58:41 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170502-105840.sql
+2017/05/02 10:58:41 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170502-105840.sql
+2017/05/02 10:58:41 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170502-105840.sql
+2017/05/02 10:59:41 - ERROR : Le fichier conf : conf/site1.conf n'existe pas
