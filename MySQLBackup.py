@@ -1,10 +1,10 @@
 import time,os
 import pymysql
 from IBackup import IBackup
-
-from backupOptions import *
+from crypt import encryptFile
+from backupOptions import BackupOption
 from functions import displayError, displayInfo
-
+from compress import compressFile,COMPRESS_NONE
 
 class MySQLBackup(IBackup):
     """
@@ -77,11 +77,15 @@ class MySQLBackup(IBackup):
             return res
         except Exception as e:
             return None
-
+        
     def backup(self, dbName):
+        """ 
+        Créer un fichier sql du dump de la base de  données spécifié
+        :return: String le chemin relatif du fichier créé
+        """
         # creation d'un dossier pour cette base s'il n'existe pas
         backupDbPath = "backups/" + dbName + self.options.host.replace(".", "_")
-        print("\nCréation du dossier pour le backup")
+        initLog().info("Création du dossier pour le backup : "+backupDbPath)
         if not os.path.exists(backupDbPath):
             os.makedirs(backupDbPath)
 
@@ -95,7 +99,7 @@ class MySQLBackup(IBackup):
         if (self.options.host != ""):
             dumpcmd += " -h " + self.options.host
         dumpcmd += " " + dbName + " > " + backupFilePath
-        print("dumpcmd -> " + dumpcmd)
+        initLog().info("dumpcmd -> " + dumpcmd)
 
         # execution de la commande et recuperation du statut
         output = os.system(dumpcmd)
@@ -109,11 +113,15 @@ class MySQLBackup(IBackup):
         """
         Exécute la sauvegarde en fonction des options
         Et créé un dossier si inexistant par BDD, ainsi qu'un fichier dump MySql pour chaque base de données
-        """
+        """ 
         if self.serverConnect() != None:
-            for counter in range(0, len(self.options.databases)):
-                if self.dbConnect(self.options.databases[counter]) != None:
-                    nameFilePath = self.backup(self.options.databases[counter])
+            for database in self.options.databases:
+                if self.dbConnect(database) != None:
+                    nameFilePath = self.backup(database)
+                    if (self.options.crypt==True):
+                        encryptFile(fileName,self.options.cryptKey)
+                    if(self.options.compressType != COMPRESS_NONE):
+                        compressFile(fileName, self.options.compressType)
 
 if __name__=="__main__":
     # if os.isatty(sys.stdin.fileno()):
