@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from functions import *
-import BackupFactory
+from BackupFactory import *
 import backupOptions
 from compress import getCompressTypeList
 
@@ -11,7 +11,7 @@ def askSGBD():
     Demande un nom d'SGBD
     :return: String
     """
-    return askChoice("\nChoisissez un SGBD: ", BackupFactory.BackupFactory().getSupportedSGBD())
+    return BackupFactory.getSupportedSGBD()[askChoice("\nChoisissez un SGBD: ", BackupFactory.getSupportedSGBD())]
 
 def askHost():
     """
@@ -67,7 +67,7 @@ def askCompressType():
     Demande si le programme doit compresser le fichier de dump, et si oui de quel type
     :return: String
     """
-    return askChoice("\nChoisisez ou non un type de compression: ", getCompressTypeList())
+    return getCompressTypeList()[askChoice("\nChoisisez ou non un type de compression: ", getCompressTypeList())]
 
 if __name__=="__main__":
 
