@@ -130,3 +130,12 @@
 2017/05/01 23:32:57 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/backupTestlocalhost/backupTest-20170501-233256.sql
 2017/05/01 23:32:58 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/backupTest2localhost/backupTest2-20170501-233257.sql
 2017/05/01 23:32:58 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/backupTest2localhost/backupTest2-20170501-233257.sql
+2017/05/02 10:44:50 - INFO : Création du dossier pour le backup : backups/exoslocalhost
+2017/05/02 10:44:50 - INFO : dumpcmd -> mysqldump -u root -h localhost exos > backups/exoslocalhost/exos-20170502-104450.sql
+2017/05/02 10:44:50 - INFO : dumpcmd -> mysqldump -u root -h localhost exos > backups/exoslocalhost/exos-20170502-104450.sql
+2017/05/02 10:46:26 - INFO : Création du dossier pour le backup : backups/exoslocalhost
+2017/05/02 10:46:26 - INFO : dumpcmd -> C:\wamp\bin\mysql\mysql5.6.17\bin\mysqldump -u root -h localhost exos > backups/exoslocalhost/exos-20170502-104626.sql
+2017/05/02 10:46:26 - INFO : dumpcmd -> C:\wamp\bin\mysql\mysql5.6.17\bin\mysqldump -u root -h localhost exos > backups/exoslocalhost/exos-20170502-104626.sql
+2017/05/02 10:46:29 - INFO : Le backup de la base de donnée 'exos'a été créé dans le dans le dossier backups/exoslocalhost/exos-20170502-104626.sql
+2017/05/02 10:46:29 - INFO : Le backup de la base de donnée 'exos'a été créé dans le dans le dossier backups/exoslocalhost/exos-20170502-104626.sql
+2017/05/02 10:46:29 - INFO : Le backup de la base de donnée 'exos'a été créé dans le dans le dossier backups/exoslocalhost/exos-20170502-104626.sql
