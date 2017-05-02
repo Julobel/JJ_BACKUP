@@ -109,7 +109,40 @@ def decryption(message,key):
         cpt = cpt -1
     msg = msg[:cpt-1]
     return msg
-   
+
+def encryptFile(filePath,key):
+    '''
+    Crypte le contenu d'un fichier avec la clé de cryptage spécifiée
+    :param string filePath, le chemin du fichier
+    :param string key, cle de cryptage
+    '''
+    # On recupere le contenu du fichier
+    with open(filePath,'r') as file:
+        content = file.read()
+    #on crypte le contenu
+    cryptedContent = encryption(content, key)
+
+    # On écrit le fichier avec le nouveau contenu
+    with open(filePath,'w') as file:
+        file.write(cryptedContent)
+        
+def decryptFile(filePath,key):
+    '''
+    Decrypte le contenu d'un fichier avec la clé de cryptage spécifiée
+    :param string filePath, le chemin du fichier
+    :param string key, cle de decryptage
+    :throw ValueError n°53236 si la cle n'est pas adaptée au message (longueur du message mod longueur de la clé différent de 0    
+    '''
+    # On recupere le contenu du fichier
+    with open(filePath,'r') as file:
+        cryptedContent = file.read()
+    #on décrypte le contenu
+    decryptedContent = decryption(cryptedContent, key)
+
+    # On écrit le fichier avec le nouveau contenu
+    with open(filePath,'w') as file:
+        file.write(decryptedContent)
+           
 if __name__=="__main__":
     un_message="ceci est un /*message*/."
     key="crypto"
