@@ -39,15 +39,11 @@ class BackupOption():
         self.user = askUser()
         self.pwd = askPwd()
         self.allDatabases = askAllDbs()
-        if self.allDatabases:
-            pass
-        else:
+        if not self.allDatabases:
             self.databases = askDbs()
         self.crypt = askCrypt()
         if self.crypt:
-            pass
-        else:
-            self.cryptKey = generateEncryptionKey(10)
+            self.cryptKey = input("Entrez une clé de cryptage: ")
         self.compressType = askCompressType()
 
         # if all db et akcrypt key

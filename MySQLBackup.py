@@ -1,9 +1,9 @@
 import time,os
 import pymysql
 from IBackup import IBackup
+from backupOptions import *
 from crypt import encryptFile
-from backupOptions import BackupOption
-from functions import displayError, displayInfo
+from functions import displayError, displayInfo, initLog
 from compress import compressFile,COMPRESS_NONE
 
 class MySQLBackup(IBackup):
@@ -119,9 +119,9 @@ class MySQLBackup(IBackup):
                 if self.dbConnect(database) != None:
                     nameFilePath = self.backup(database)
                     if (self.options.crypt==True):
-                        encryptFile(fileName,self.options.cryptKey)
+                        encryptFile(nameFilePath,self.options.cryptKey)
                     if(self.options.compressType != COMPRESS_NONE):
-                        compressFile(fileName, self.options.compressType)
+                        compressFile(nameFilePath, self.options.compressType)
 
 if __name__=="__main__":
     # if os.isatty(sys.stdin.fileno()):
