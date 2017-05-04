@@ -2,7 +2,6 @@ import time,os
 import pymysql
 from IBackup import IBackup
 from crypt import encryptFile
-from backupOptions import *
 from functions import displayError, displayInfo, initLog
 from compress import compressFile,COMPRESS_NONE
 
@@ -57,6 +56,7 @@ class MySQLBackup(IBackup):
         return None   
 
     def getOptions(self):
+        """ Retourne un objet BackupOption correpondant aux options"""
         return self.options
     
     def getDatabases(self):
@@ -122,13 +122,3 @@ class MySQLBackup(IBackup):
                         encryptFile(nameFilePath,self.options.cryptKey)
                     if(self.options.compressType != COMPRESS_NONE):
                         compressFile(nameFilePath, self.options.compressType)
-
-if __name__=="__main__":
-    # if os.isatty(sys.stdin.fileno()):
-    option = BackupOption()
-    option.recoveryOptions()
-    MySQLBackup(option).execute()
-    # else:
-    #     print("En graphique")
-    #pip install cx_freeze
-
