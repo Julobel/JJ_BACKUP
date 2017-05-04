@@ -2,6 +2,7 @@
 import configparser
 from consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType
 from functions import stringToBoolean
+from BackupFactory import BackupFactory
 
 class BackupOption():
     """
@@ -39,6 +40,7 @@ class BackupOption():
         self.pwd = askPwd()
         self.allDatabases = askAllDbs()
         if not self.allDatabases:
+            print('\n'.join(BackupFactory.create(self).getDatabases()))
             self.databases = askDbs()
         self.crypt = askCrypt()
         if self.crypt:
