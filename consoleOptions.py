@@ -1,10 +1,7 @@
 # coding=utf-8
-
-from functions import *
-from BackupFactory import *
-import backupOptions
+from functions import askChoice,askBoolean
+from BackupFactory import BackupFactory
 from compress import getCompressTypeList
-
 
 def askSGBD():
     """
@@ -68,16 +65,3 @@ def askCompressType():
     :return: String
     """
     return getCompressTypeList()[askChoice("\nChoisisez ou non un type de compression: ", getCompressTypeList())]
-
-if __name__=="__main__":
-
-    options = backupOptions.BackupOption
-
-    options.sgbd = askSGBD()
-    options.host = askHost()
-    options.user = askUser()
-    options.pwd = askPwd()
-    options.allDatabases = askAllDbs()
-    options.databases = askDbs()
-    options.compressType = askCompressType()
-    options.crypt = askCrypt()
