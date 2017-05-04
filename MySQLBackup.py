@@ -61,12 +61,11 @@ class MySQLBackup(IBackup):
     
     def getDatabases(self):
         """ 
-        Retourne un tableau de string contenant la liste des bdd. 
-        Retourne None si une erreur de connexion se produit
+        Retourne un tableau de string contenant la liste des bdd.
         """
-        try:
-            res=[]
-            connection = self.serverConnect()
+        res=[]
+        connection = self.serverConnect()
+        if connection != None:
             cursor = connection.cursor()
             cursor.execute('SHOW DATABASES')
             database = cursor.fetchone()
@@ -74,9 +73,7 @@ class MySQLBackup(IBackup):
             while database:
                 res.append(database['Database'])
                 database = cursor.fetchone()
-            return res
-        except Exception as e:
-            return None
+        return res
         
     def backup(self, dbName):
         """ 
