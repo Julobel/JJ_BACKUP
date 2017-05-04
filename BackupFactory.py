@@ -15,7 +15,7 @@ class BackupFactory:
         """
         if options.sgbd == BackupFactory.SGBD_MYSQL:
             return MySQLBackup(options)
-        raise Exception ("SGBD non supporté")
+        raise Exception (53238,"SGBD non supporté")
    
     @staticmethod
     def getSupportedSGBD():
