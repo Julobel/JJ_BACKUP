@@ -1,9 +1,7 @@
 # -*- coding: utf8 -*-
-
 import zipfile
 import os
 import tarfile
-
 
 #constantes pour le type de compression
 COMPRESS_NONE = "Aucun"
@@ -11,11 +9,13 @@ COMPRESS_ZIP = "zip"
 COMPRESS_GZ = "gz"
 COMPRESS_BZ2 = "bz2"
     
-#compresse un fichier dans une archive du même nom dans le même dossier avec le système de compression spécifié et supprimme le fichier
-#renvoie vrai si la procédure a fini avec succes
-#        faux si le fichier n'existe pas
-#        une ValueError si le système de compression n'est pas géré
 def compressFile(filePath,archiveType):
+    """
+    compresse un fichier dans une archive du même nom dans le même dossier avec le système de compression spécifié et supprimme le fichier
+    renvoie vrai si la procédure a fini avec succes
+            faux si le fichier n'existe pas
+    une ValueError si le système de compression n'est pas géré
+    """
     if (archiveType==COMPRESS_ZIP):
         if (_zipFile(filePath)):
             os.remove(filePath)
@@ -25,11 +25,12 @@ def compressFile(filePath,archiveType):
     elif archiveType not in getCompressTypeList():
         raise ValueError('Invalid compession system')
     
-
-#crée un fichier zip du même nom que le fichier specifié dans le même dossier
-#renvoie vrai si la procédure a fini avec succes
-#        faux si le fichier n'existe pas
 def _zipFile(filePath):
+    """
+    crée un fichier zip du même nom que le fichier specifié dans le même dossier
+    renvoie vrai si la procédure a fini avec succes
+            faux si le fichier n'existe pas
+    """
     success=False
     if (os.path.exists(filePath)):
         zipf = zipfile.ZipFile(filePath+'.zip', 'w', zipfile.ZIP_DEFLATED)
@@ -38,10 +39,13 @@ def _zipFile(filePath):
         success=True
     return success
 
-#crée un fichier tar du même nom que le fichier specifié dans le même dossier avec la compression specifiée
-#renvoie vrai si la procédure a fini avec succes
-#        faux si le fichier n'existe pas
+#
 def _tarFile(filePath,archiveType):
+    """
+    crée un fichier tar du même nom que le fichier specifié dans le même dossier avec la compression specifiée
+    renvoie vrai si la procédure a fini avec succes
+            faux si le fichier n'existe pas
+    """
     success=False
     if (os.path.exists(filePath)):        
         tarFile = tarfile.open(filePath+'.tar.'+archiveType, 'w:'+archiveType)
@@ -51,6 +55,9 @@ def _tarFile(filePath,archiveType):
     return success
 
 def getCompressTypeList():
+    """
+    Retourne la liste des types de compression supportés
+    """
     res=[]
     res.append(COMPRESS_NONE)
     res.append(COMPRESS_BZ2)
