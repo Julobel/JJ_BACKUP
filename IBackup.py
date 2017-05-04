@@ -29,6 +29,3 @@ class IBackup(ABC):
     def getDatabases(self):    
         """ Retourne la liste des bases de données présentes sur le serveur """
         pass
-    
-if __name__=="__main__":
-    pass
