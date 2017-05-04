@@ -1,8 +1,6 @@
 # coding=utf-8
-
 import configparser
-from consoleOptions import *
-from crypt import generateEncryptionKey
+from consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType
 from functions import stringToBoolean
 
 class BackupOption():
@@ -34,6 +32,7 @@ class BackupOption():
         self.cryptKey = cryptKey
 
     def recoveryOptions(self):
+        """ hydrate les attributs par saisie au terminal """
         self.sgbd = askSGBD()
         self.host = askHost()
         self.user = askUser()
@@ -45,8 +44,6 @@ class BackupOption():
         if self.crypt:
             self.cryptKey = input("Entrez une clé de cryptage: ")
         self.compressType = askCompressType()
-
-        # if all db et akcrypt key
 
     def addDatabase(self, database):
         """ ajoute une bdd à la liste """
@@ -108,6 +105,3 @@ class BackupOption():
         option.crypt = stringToBoolean(config['options']['crypt'])
         option.cryptKey = config['options']['cryptKey']
         return option
-
-if __name__=="__main__":
-    BackupOption().recoveryOptions()
