@@ -1,6 +1,6 @@
 from tkinter import Tk,Frame,Toplevel,Canvas,LabelFrame,Label,Entry,Button,Checkbutton,OptionMenu,END,IntVar,StringVar
 from functions import centerFrame, displayError
-from compress import COMPRESS_BZ2,COMPRESS_GZ,COMPRESS_ZIP
+from compress import getCompressTypeList
 from backupOptions import BackupOption
 from BackupFactory import BackupFactory
     
@@ -25,11 +25,8 @@ class OptionFrame(Tk):
         self.sgbd = StringVar()
         supportedSGBD = BackupFactory.getSupportedSGBD()
         
-        if(len(supportedSGBD)>0):
-            self.sgbdList = OptionMenu(self.canevas, self.sgbd,*supportedSGBD)
-            self.sgbd.set(supportedSGBD[0])  
-        else:
-            self.sgbdList = OptionMenu(self.canevas,self.sgbd,None)
+        self.sgbdList = OptionMenu(self.canevas, self.sgbd,*supportedSGBD)
+        self.sgbd.set(supportedSGBD[0])        
         self.sgbdList.config(width=23)
         self.sgbdList.grid(row=i,column=j+1,columnspan=2,padx=5,pady=0)
         
@@ -86,8 +83,9 @@ class OptionFrame(Tk):
         
         #liste des type de compression qui s'active uniquement lorsque l'option compression est cochée
         self.compressType = StringVar()
-        self.compressionTypeList = OptionMenu(paramFrame, self.compressType, COMPRESS_ZIP, COMPRESS_GZ, COMPRESS_BZ2)
-        self.compressType.set(COMPRESS_ZIP)
+        compressList = getCompressTypeList()
+        self.compressionTypeList = OptionMenu(paramFrame, self.compressType, *compressList)
+        self.compressType.set(compressList[0])
         self.compressionTypeList.config(width=4)
         self.compressionTypeList.config(state='disable')
         self.compressionTypeList.grid(row=iParam,column=jParam+1,columnspan=1,padx=5,pady=0)
@@ -150,7 +148,7 @@ class OptionFrame(Tk):
             self.updateOptions()
             backup = BackupFactory.create(self.options)                
             databases =  backup.getDatabases()
-            if(databases is not None):
+            if(len(databases)>0):
                 #affichage d'une fentre'
                 self.choiceWindowOpen=True
                 self.choiceDbWindow = Toplevel(self.master)
@@ -250,10 +248,3 @@ class OptionFrame(Tk):
             backup.execute()
         except Exception as e:
             displayError(e.args[1])
-
-
-if __name__=="__main__":    
-    hFrame = OptionFrame(BackupOption())
-    hFrame.show()
-
-
