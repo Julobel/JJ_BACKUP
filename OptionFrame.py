@@ -35,8 +35,18 @@ class OptionFrame(Tk):
         labelHote = Label(self.canevas, text="Hote : ")
         labelHote.grid(row=i,column=j,columnspan=1,padx=10,pady=10,sticky="e")
         self.host = StringVar()
+        self.host.set("localhost")
         self.inputHote = Entry(self.canevas, width=30, textvariable=self.host)
         self.inputHote.grid(row=i,column=j+1,columnspan=2,padx=5,pady=10)
+        
+        i=i+1
+        #port
+        labelPort = Label(self.canevas, text="Port : ")
+        labelPort.grid(row=i,column=j,columnspan=1,padx=10,pady=10,sticky="e")
+        self.port = IntVar()
+        self.port.set(3306)
+        self.inputPort = Entry(self.canevas, width=30, textvariable=self.port)
+        self.inputPort.grid(row=i,column=j+1,columnspan=2,padx=5,pady=10)
         
         i=i+1
         #nom utilisateur
@@ -184,6 +194,7 @@ class OptionFrame(Tk):
     def updateOptions(self):
         self.options.sgbd = self.sgbd.get()
         self.options.host = self.host.get()
+        self.options.port = self.port.get()
         self.options.user = self.user.get()
         self.options.pwd = self.pwd.get()
         self.options.allDatabases = self.allDatabases.get()

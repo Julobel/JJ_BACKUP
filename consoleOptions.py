@@ -1,5 +1,5 @@
 # coding=utf-8
-from functions import askChoice,askBoolean
+from functions import askChoice,askBoolean,getInt
 from BackupFactory import BackupFactory
 from compress import getCompressTypeList
 
@@ -16,6 +16,13 @@ def askHost():
     :return: String
     """
     return input("\nEntrez le nom de domaine ou l'adresse IP de votre serveur: ")
+
+def askPort():
+    """
+    Demande un numéro de port et le retourne
+    :return: int
+    """
+    return getInt("\nEntrez le numéro du port utilisé: ",1, 65535)
 
 def askUser():
     """

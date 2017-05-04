@@ -21,7 +21,7 @@ class MySQLBackup(IBackup):
         si une erreur se produit, affiche le message et renvoie None
         """
         try:
-            return pymysql.connect(host=self.options.host, user=self.options.user, password=self.options.pwd,
+            return pymysql.connect(host=self.options.host, port=self.options.port, user=self.options.user, password=self.options.pwd,
                 charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
         except pymysql.err.OperationalError as e1:
             if(e1.args[0]==2003):
@@ -38,7 +38,7 @@ class MySQLBackup(IBackup):
         si une erreur se produit, affiche le message et renvoie None
         """   
         try:
-            return pymysql.connect(host=self.options.host, user=self.options.user, password=self.options.pwd,
+            return pymysql.connect(host=self.options.host, port=self.options.port, user=self.options.user, password=self.options.pwd,
                  db=dbName,charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
         except pymysql.err.OperationalError as e1:
             if(e1.args[0]==1044):
@@ -90,7 +90,7 @@ class MySQLBackup(IBackup):
         backupFilePath = backupDbPath + "/" + dbName + "-" + time.strftime('%Y%m%d-%H%M%S') + ".sql"
 
         # creation de la commande mysqldump
-        dumpcmd = "mysqldump -u " + self.options.user
+        dumpcmd = "mysqldump -u " + self.options.user + " -P " + self.options.port
         if (self.options.pwd != ""):
             dumpcmd += " -p" + self.options.pwd
         if (self.options.host != ""):

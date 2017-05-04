@@ -1,6 +1,6 @@
 # coding=utf-8
 import configparser
-from consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType
+from consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType,askPort
 from functions import stringToBoolean
 from BackupFactory import BackupFactory
 
@@ -9,6 +9,7 @@ class BackupOption():
     Classe contenant les différentes options nécessaires à la sauvegarde
     sgbd : une constante representant le sgbd
     host : une chaine de caractere representant l'adresse IP ou le nom de domaine
+    port : un entier representant le numero du port utilisé par le protocole
     user : une chaine de caractere representant le nom d'utilisateur de la BDD
     pwd : une chaine de caractere representant le mot de passe de l'utilisateur de la BDD
     databases : un tableau contenant la liste des noms des bases à sauvegarder 
@@ -18,12 +19,13 @@ class BackupOption():
     cryptKey : une chaine de caractere representant la clé de cryptage
     """
 
-    def __init__(self,sgbd="", host="",user="",pwd="",databases=[], allDatabases=False,compressType="",crypt=False,cryptKey=""):
+    def __init__(self,sgbd="",host="localhost",port=3306,user="root",pwd="root",databases=[], allDatabases=False,compressType="",crypt=False,cryptKey=""):
         """
         initialisation des attributs
         """
         self.sgbd = sgbd
         self.host = host
+        self.port = port
         self.user = user
         self.pwd = pwd
         self.databases = databases
@@ -36,6 +38,7 @@ class BackupOption():
         """ hydrate les attributs par saisie au terminal """
         self.sgbd = askSGBD()
         self.host = askHost()
+        self.port = askPort()
         self.user = askUser()
         self.pwd = askPwd()
         self.allDatabases = askAllDbs()
@@ -61,6 +64,7 @@ class BackupOption():
         """ couvertit l'objet en chaine de caractères """
         res = {'sgbd': self.sgbd,
                                 'host': self.host,
+                                'port': self.port,
                                 'user': self.user,
                                 'pwd': self.pwd,
                                 'databases':self.databases,
@@ -76,6 +80,7 @@ class BackupOption():
         config = configparser.ConfigParser()
         config['options'] =  {'sgbd': self.sgbd,
                                 'host': self.host,
+                                'port': self.port,
                                 'user': self.user,
                                 'pwd': self.pwd,
                                 'allDatabases': self.allDatabases,
@@ -96,6 +101,7 @@ class BackupOption():
         option = BackupOption()
         option.sgbd = config['options']['sgbd']
         option.host = config['options']['host']
+        option.port = int(config['options']['port'])
         option.user = config['options']['user']
         option.pwd = config['options']['pwd']
         if(len(config['options']['databases'])==0):
