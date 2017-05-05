@@ -117,3 +117,20 @@ def confirm(message,tableau=[]):
             return reponse
         else:
             continue
+
+def deletePath(backupFilePath):
+    """
+    Supprimme un fichier et son dossier parent s'il est vide
+    """
+    # suppression du fichier
+    file_path = Path(backupFilePath)
+    file_path.unlink()
+    # suppression du dossier parent, s'il est vide
+    for parent, _ in zip(file_path.parents, range(1)):
+        # On remonte de 1 dossier dans l'arborescence du fichier supprimer
+        # Si le dossier est vide on le supprime sinon on retourne une erreur
+        try:
+            parent.rmdir()
+        except OSError:
+            print (OSError)
+            break

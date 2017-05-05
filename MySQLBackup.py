@@ -2,7 +2,7 @@ import time,os
 import pymysql
 from IBackup import IBackup
 from crypt import encryptFile
-from functions import displayError, displayInfo, initLog
+from functions import displayError, displayInfo, initLog, deletePath
 from compress import compressFile,COMPRESS_NONE
 
 class MySQLBackup(IBackup):
@@ -82,8 +82,8 @@ class MySQLBackup(IBackup):
         """
         # creation d'un dossier pour cette base s'il n'existe pas
         backupDbPath = "backups/" + self.options.host.replace(".", "_") + "_" + dbName
-        initLog().info("Création du dossier pour le backup : "+backupDbPath)
         if not os.path.exists(backupDbPath):
+            initLog().info("Création du dossier pour le backup : "+backupDbPath)
             os.makedirs(backupDbPath)
 
         # chemin et nom du fichier sql
@@ -104,6 +104,9 @@ class MySQLBackup(IBackup):
         if output == 0:
             displayInfo("Le backup de la base de donnée '" + dbName
                         + "'a été créé dans le dans le dossier " + backupFilePath)
+        else:
+            deletePath(backupFilePath)
+            raise ValueError(54627,"Impossible d'effectuer le dump de MySQL")
         return backupFilePath
 
     def execute(self):
