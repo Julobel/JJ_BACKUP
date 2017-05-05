@@ -196,3 +196,19 @@
 2017/05/02 11:11:44 - INFO : Le backup de la base de donnée 'mysql_bts2slam'a été créé dans le dans le dossier backups/10_33_3_61_mysql_bts2slam/mysql_bts2slam-20170502-111140.sql
 2017/05/02 11:11:44 - INFO : Le backup de la base de donnée 'mysql_bts2slam'a été créé dans le dans le dossier backups/10_33_3_61_mysql_bts2slam/mysql_bts2slam-20170502-111140.sql
 2017/05/02 11:11:44 - INFO : Le backup de la base de donnée 'mysql_bts2slam'a été créé dans le dans le dossier backups/10_33_3_61_mysql_bts2slam/mysql_bts2slam-20170502-111140.sql
+2017/05/05 23:13:52 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170505-231352.sql
+2017/05/05 23:13:53 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170505-231352.sql
+2017/05/05 23:13:53 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170505-231352.sql
+2017/05/05 23:13:53 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/05 23:13:53 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/05 23:13:53 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/05 23:13:53 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:53 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:53 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:53 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:54 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:54 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:54 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:54 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:13:54 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170505-231353.sql
+2017/05/05 23:17:27 - INFO : Connexion au serveur : localhost:3306
