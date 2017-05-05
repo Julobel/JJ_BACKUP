@@ -90,7 +90,7 @@ class MySQLBackup(IBackup):
         backupFilePath = backupDbPath + "/" + dbName + "-" + time.strftime('%Y%m%d-%H%M%S') + ".sql"
 
         # creation de la commande mysqldump
-        dumpcmd = "mysqldump -u " + self.options.user + " -P " + self.options.port
+        dumpcmd = "mysqldump -u " + self.options.user + " -P " + str(self.options.port)
         if (self.options.pwd != ""):
             dumpcmd += " -p" + self.options.pwd
         if (self.options.host != ""):
