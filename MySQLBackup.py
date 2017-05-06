@@ -21,7 +21,7 @@ class MySQLBackup(IBackup):
         si une erreur se produit, affiche le message et renvoie None
         """
         try:
-            initLog().info("Connexion au serveur : "+self.options.host+":"+self.options.port)
+            initLog().info("Connexion au serveur : "+self.options.host+":"+str(self.options.port))
             return pymysql.connect(host=self.options.host, port=self.options.port, user=self.options.user, password=self.options.pwd,
                 charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
         except pymysql.err.OperationalError as e1:
