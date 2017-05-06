@@ -2,10 +2,10 @@
 # -*-coding:utf-8 -*
 
 import sys,os
-from utils.optionFrame import OptionFrame
-from utils.functions import displayError,askChoice
-from utils.backupFactory import BackupFactory
-from utils.backupOptions import BackupOption
+from lib.view.optionFrame import OptionFrame
+from lib.utils.functions import displayError,askChoice
+from lib.entity.backupFactory import BackupFactory
+from lib.entity.backupOptions import BackupOption
 
 
 #si des args on été passés   

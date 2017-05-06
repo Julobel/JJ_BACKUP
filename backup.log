@@ -320,3 +320,154 @@
 2017/05/06 12:14:39 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-121438.sql
 2017/05/06 12:14:39 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-121438.sql
 2017/05/06 12:14:39 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-121438.sql
+2017/05/06 12:41:27 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:00 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:00 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:00 - INFO : Création du dossier pour le backup : backups/localhost_backupTest
+2017/05/06 13:59:00 - INFO : Création du dossier pour le backup : backups/localhost_backupTest
+2017/05/06 13:59:00 - INFO : Création du dossier pour le backup : backups/localhost_backupTest
+2017/05/06 13:59:00 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:00 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:00 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:00 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135900.sql
+2017/05/06 13:59:22 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/06 13:59:22 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/06 13:59:22 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/06 13:59:22 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/06 13:59:22 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/06 13:59:22 - INFO : Création du dossier pour le backup : backups/localhost_backupTest2
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:22 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135922.sql
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:26 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-135926.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:27 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 13:59:45 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-135927.sql
+2017/05/06 14:27:03 - ERROR : Le fichier conf : conf/sites1 n'existe pas
+2017/05/06 14:27:13 - ERROR : Le fichier conf : conf/site1 n'existe pas
+2017/05/06 14:36:09 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:36:09 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143609.sql
+2017/05/06 14:36:09 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143609.sql
+2017/05/06 14:36:09 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143609.sql
+2017/05/06 14:36:09 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143609.sql
+2017/05/06 14:36:09 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143609.sql
+2017/05/06 14:36:09 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:09 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:09 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:09 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:31 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:36:31 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143631.sql
+2017/05/06 14:36:31 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143631.sql
+2017/05/06 14:36:31 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143631.sql
+2017/05/06 14:36:31 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143631.sql
+2017/05/06 14:36:31 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143631.sql
+2017/05/06 14:36:31 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:31 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:31 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:36:31 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:37:04 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:37:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143704.sql
+2017/05/06 14:37:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143704.sql
+2017/05/06 14:37:05 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143704.sql
+2017/05/06 14:37:05 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143704.sql
+2017/05/06 14:37:05 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143704.sql
+2017/05/06 14:37:05 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:37:05 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:37:05 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:37:05 - ERROR : La base de données n'éxiste pas
+2017/05/06 14:37:17 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:37:17 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143717.sql
+2017/05/06 14:37:17 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-143717.sql
+2017/05/06 14:37:17 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143717.sql
+2017/05/06 14:37:17 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143717.sql
+2017/05/06 14:37:17 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-143717.sql
+2017/05/06 14:50:39 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:50:55 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:51:03 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:51:03 - INFO : Connexion au serveur : localhost:3306
+2017/05/06 14:51:03 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:03 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:03 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest > backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest'a été créé dans le dans le dossier backups/localhost_backupTest/backupTest-20170506-145103.sql
+2017/05/06 14:51:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : dumpcmd -> mysqldump -u root -P 3306 -proot -h localhost backupTest2 > backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-145104.sql
+2017/05/06 14:51:04 - INFO : Le backup de la base de donnée 'backupTest2'a été créé dans le dans le dossier backups/localhost_backupTest2/backupTest2-20170506-145104.sql

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*-coding:utf-8 -*
 
-from crypt import *
+from lib.utils.crypt import encryption
 
 # Fonctions
 

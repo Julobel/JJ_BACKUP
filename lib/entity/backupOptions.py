@@ -2,9 +2,9 @@
 # -*-coding:utf-8 -*
 
 import configparser
-from utils.consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType,askPort
-from utils.functions import stringToBoolean
-from utils.backupFactory import BackupFactory
+from lib.view.consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType,askPort
+from lib.utils.functions import stringToBoolean
+from lib.entity.backupFactory import BackupFactory
 
 class BackupOption():
     """

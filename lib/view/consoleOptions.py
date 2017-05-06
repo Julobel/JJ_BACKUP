@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # -*-coding:utf-8 -*
 
-from utils.functions import askChoice,askBoolean,getInt
-from utils.backupFactory import BackupFactory
-from utils.compress import getCompressTypeList
+from lib.utils.functions import askChoice,askBoolean,getInt
+from lib.entity.backupFactory import BackupFactory
+from lib.utils.compress import getCompressTypeList
 
 def askSGBD():
     """

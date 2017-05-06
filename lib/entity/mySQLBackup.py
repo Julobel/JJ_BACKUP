@@ -3,10 +3,10 @@
 
 import time,os
 import pymysql
-from utils.iBackup import IBackup
-from utils.encryption.crypt import encryptFile
-from utils.functions import displayError, displayInfo, initLog, deletePath
-from utils.compress import compressFile,COMPRESS_NONE
+from lib.entity.iBackup import IBackup
+from lib.utils.crypt import encryptFile
+from lib.utils.functions import displayError, displayInfo, initLog, deletePath
+from lib.utils.compress import compressFile,COMPRESS_NONE
 
 class MySQLBackup(IBackup):
     """
