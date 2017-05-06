@@ -1,8 +1,10 @@
-# coding=utf-8
+#!/usr/bin/python3
+# -*-coding:utf-8 -*
+
 import configparser
-from consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType,askPort
-from functions import stringToBoolean
-from BackupFactory import BackupFactory
+from utils.consoleOptions import askSGBD,askHost,askUser,askPwd,askAllDbs,askDbs,askCrypt,askCompressType,askPort
+from utils.functions import stringToBoolean
+from utils.backupFactory import BackupFactory
 
 class BackupOption():
     """

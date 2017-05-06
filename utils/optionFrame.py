@@ -1,8 +1,10 @@
+#!/usr/bin/python3
+# -*-coding:utf-8 -*
+
 from tkinter import Tk,Frame,Toplevel,Canvas,LabelFrame,Label,Entry,Button,Checkbutton,OptionMenu,END,IntVar,StringVar
-from functions import centerFrame, displayError
-from compress import getCompressTypeList
-from backupOptions import BackupOption
-from BackupFactory import BackupFactory
+from utils.functions import centerFrame, displayError
+from utils.compress import getCompressTypeList
+from utils.backupFactory import BackupFactory
     
 class OptionFrame(Tk): 
     def __init__(self,options):

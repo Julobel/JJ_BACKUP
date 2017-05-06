@@ -1,10 +1,11 @@
 #!/usr/bin/python3
+# -*-coding:utf-8 -*
 
 import sys,os
-from OptionFrame import OptionFrame
-from functions import displayError,askChoice
-from BackupFactory import BackupFactory
-from backupOptions import BackupOption
+from utils.optionFrame import OptionFrame
+from utils.functions import displayError,askChoice
+from utils.backupFactory import BackupFactory
+from utils.backupOptions import BackupOption
 
 
 #si des args on été passés   

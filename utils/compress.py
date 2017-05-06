@@ -1,4 +1,6 @@
-# -*- coding: utf8 -*-
+#!/usr/bin/python3
+# -*-coding:utf-8 -*
+
 import zipfile
 import os
 import tarfile

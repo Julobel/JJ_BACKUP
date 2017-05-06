@@ -1,9 +1,12 @@
+#!/usr/bin/python3
+# -*-coding:utf-8 -*
+
 import time,os
 import pymysql
-from IBackup import IBackup
-from crypt import encryptFile
-from functions import displayError, displayInfo, initLog, deletePath
-from compress import compressFile,COMPRESS_NONE
+from utils.iBackup import IBackup
+from utils.encryption.crypt import encryptFile
+from utils.functions import displayError, displayInfo, initLog, deletePath
+from utils.compress import compressFile,COMPRESS_NONE
 
 class MySQLBackup(IBackup):
     """

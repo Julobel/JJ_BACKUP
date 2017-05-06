@@ -1,4 +1,6 @@
-# coding=utf-8
+#!/usr/bin/python3
+# -*-coding:utf-8 -*
+
 from tkinter import messagebox
 import logging
 import sys

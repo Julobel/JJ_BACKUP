@@ -1,4 +1,7 @@
-from MySQLBackup import MySQLBackup
+#!/usr/bin/python3
+# -*-coding:utf-8 -*
+
+from utils.mySQLBackup import MySQLBackup
 
 class BackupFactory:
     """ Classe usine permettant de créer des objets de type IBackup """
